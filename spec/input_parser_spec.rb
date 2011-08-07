@@ -7,8 +7,12 @@ require 'fakefs/spec_helpers'
 describe Brock::InputParser do
 
   describe "Initial state" do
-    it "contains hash to manipulate input data" do
+    it "contains stats hash property" do
       Brock::InputParser.stats.should_not be_nil
+    end
+
+    it "contains configuration hash in stats" do
+      Brock::InputParser.configuration.should_not be_nil
     end
   end
 
@@ -30,26 +34,27 @@ describe Brock::InputParser do
       describe "reading specification line" do
 
         it "reads year of cummulative stats" do
-          Brock::InputParser.stats[:totals_year].should eq(2000)
+          Brock::InputParser.configuration[:totals_year].should eq(2000)
         end
 
         it "reads age at cummulative stats year" do
-          Brock::InputParser.stats[:totals_age].should eq(28)
+          Brock::InputParser.configuration[:totals_age].should eq(28)
         end
 
         it "reads starting age for yearly stats" do
-          Brock::InputParser.stats[:stats_start_age].should eq(26)
+          Brock::InputParser.configuration[:stats_start_age].should eq(26)
         end
 
         it "reads current age" do
-          Brock::InputParser.stats[:current_age].should eq(29)
+          Brock::InputParser.configuration[:current_age].should eq(29)
         end
 
         it "reads sustenance level" do
-          Brock::InputParser.stats[:sustenance].should eq(4.67)
+          Brock::InputParser.configuration[:sustenance].should eq(4.67)
         end
 
       end
+      
     end
   end
 end

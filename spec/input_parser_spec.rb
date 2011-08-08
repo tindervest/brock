@@ -11,6 +11,13 @@ describe Brock::InputParser do
       Brock::InputParser.stats.should_not be_nil
     end
 
+    it "contains entry for each age between 19 and 42 inclusively" do
+      (19..42).each do |age|
+        key = age.to_s.intern
+        Brock::InputParser.stats[key].should_not be_nil
+      end
+    end
+
     it "contains configuration hash in stats" do
       Brock::InputParser.configuration.should_not be_nil
     end
@@ -25,7 +32,9 @@ describe Brock::InputParser do
         path = "/path/test.txt"
         
         File.open(path, 'w') do |f|
-          f << "2000 28 26 29 4.67"
+          f << "2000 28 26 29 4.67\n"
+          f << "162 600 120 180 20 3 15 115 98\n" # age 26, year 1998
+          f << "122 545 87  122 12 0 13 88 63\n" #age 27, year 1999
         end
         
         Brock::InputParser.readData(path)
@@ -54,7 +63,50 @@ describe Brock::InputParser do
         end
 
       end
-      
+
+      describe "reading stat line" do
+        let(:year_stats) { Brock::InputParser.stats[:"27"] }
+
+        it "calculates corresponding year" do
+          year_stats[:year].should eq(1999)
+        end
+
+        it "extracts games" do
+          year_stats[:games].should eq(122)
+        end
+
+        it "extracts at bats" do
+          year_stats[:at_bats].should eq(545)
+        end
+
+        it "extracts runs" do
+          year_stats[:runs].should eq(87)
+        end
+
+        it "extracts total hits" do
+          year_stats[:hits].should eq(122)
+        end
+
+        it "extracts doubles" do
+          year_stats[:doubles].should eq(12)
+        end
+
+        it "extracts triples" do
+          year_stats[:triples].should eq(0)
+        end
+
+        it "extracts home runs" do
+          year_stats[:home_runs].should eq(13)
+        end
+
+        it "extracts rbi's" do
+          year_stats[:rbi].should eq(88)
+        end
+
+        it "extracts walks" do
+          year_stats[:walks].should eq(63)
+        end
+      end
     end
   end
 end

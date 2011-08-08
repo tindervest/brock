@@ -8,7 +8,7 @@ class Brock
       end
 
       def stats
-        @stats ||= {}
+        @stats ||= initialize_stats
       end
 
       def configuration
@@ -17,23 +17,59 @@ class Brock
 
       def readData(path)
         File.open(path) do |f|
-          f.each_line do |l|
-            extract_configuration_data(l)
+          lines = f.readlines
+          lines.each_index do |index|
+            extract_configuration_data(lines[index]) unless index > 0
+            extract_stat_line(lines[index], index) unless index == 0
           end
         end
       end
 
       :private
 
-      def extract_configuration_data(line)
-        age_data_values = line.scan(/\d+/)
-        configuration[:totals_year] = age_data_values[0].to_i
-        configuration[:totals_age] = age_data_values[1].to_i
-        configuration[:stats_start_age] = age_data_values[2].to_i
-        configuration[:current_age] = age_data_values[3].to_i
+      def initialize_stats
+        stats_hash = {}
+        (19..42).each do |age|
+          stats_hash[age.to_s.intern] ||= {}
+        end
+        return stats_hash
+      end
 
-        sustenance = line.scan(/\d+\.\d+/)
-        configuration[:sustenance] = sustenance[0].to_f
+      def extract_configuration_data(line)
+        config_values = line.scan(/(\d{4}|\d{2}|\d+\.\d+)+/)
+        positions = %w{ totals_year totals_age stats_start_age current_age sustenance }
+
+        populate_hash_from_extracted_values(configuration, positions, config_values)
+        configuration[:sustenance] = config_values[4][0].to_f
+      end
+
+      def extract_stat_line(line, index)
+        stat_values = line.scan(/(\d+)/)
+        positions = %w{ games at_bats runs hits doubles triples home_runs rbi walks }
+
+        age = set_up_age_entry(index)
+        populate_hash_from_extracted_values(stats[age], positions, stat_values) 
+      end
+
+      def set_up_age_entry(index)
+        delta = calculate_stats_line_delta(index)
+        age = (configuration[:totals_age] + delta).to_s.intern
+        year = configuration[:totals_year] + delta
+        stats[age] ||= {}
+        stats[age][:year] = year 
+
+        return age
+      end
+
+      def calculate_stats_line_delta(index)
+        years_delta = configuration[:totals_age] - configuration[:stats_start_age] 
+        return index - years_delta - 1
+      end
+
+      def populate_hash_from_extracted_values(hash, positions, values)
+        positions.each_index do |index|
+          hash[positions[index].intern] = values[index][0].to_i
+        end
       end
     end
 

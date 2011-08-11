@@ -25,10 +25,12 @@ describe Brock::InputParser do
   describe "reading file input" do
     include FakeFS::SpecHelpers
 
+    let(:path) { "/path/test.txt" }
+    
+
     describe "reading properly formatted file" do
 
       before(:each) do
-        path = "/path/test.txt"
         
         File.open(path, 'w') do |f|
           f << "2000 28 26 29 4.67\n"
@@ -105,6 +107,23 @@ describe Brock::InputParser do
         it "extracts walks" do
           year_stats[:walks].should eq(63)
         end
+      end
+    end
+
+    describe "reading malformatted file" do
+
+      describe "reading specification line" do
+
+        before(:each) do
+          File.open(path, 'w') do |f|
+            f << "2XKXKX KKK"
+          end
+        end
+      
+        it "raises error when configuration line is not in correct format " do
+          lambda { Brock::InputParser.readData(path) }.should raise_error(Brock::MalformattedArgumentError, "Configuration line formatted incorrectly: 2XKXKX KKK")
+        end
+
       end
     end
   end

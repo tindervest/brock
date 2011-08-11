@@ -1,3 +1,5 @@
+require File.expand_path(File.dirname(__FILE__) + '/error')
+
 class Brock
 
   module InputParser
@@ -36,6 +38,7 @@ class Brock
       end
 
       def extract_configuration_data(line)
+        raise Brock::MalformattedArgumentError, "Configuration line formatted incorrectly: #{line}" unless line.match /(\d{4}|\d{2}|\d+\.\d+)+/
         config_values = line.scan(/(\d{4}|\d{2}|\d+\.\d+)+/)
         positions = %w{ totals_year totals_age stats_start_age current_age sustenance }
 

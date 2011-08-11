@@ -30,7 +30,7 @@ class Brock
       def initialize_stats
         stats_hash = {}
         (19..42).each do |age|
-          stats_hash[age.to_s.intern] ||= {}
+          stats_hash[age] ||= {}
         end
         return stats_hash
       end
@@ -53,7 +53,7 @@ class Brock
 
       def set_up_age_entry(index)
         delta = calculate_stats_line_delta(index)
-        age = (configuration[:totals_age] + delta).to_s.intern
+        age = configuration[:totals_age] + delta
         year = configuration[:totals_year] + delta
         stats[age] ||= {}
         stats[age][:year] = year 

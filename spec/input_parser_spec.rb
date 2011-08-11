@@ -13,8 +13,7 @@ describe Brock::InputParser do
 
     it "contains entry for each age between 19 and 42 inclusively" do
       (19..42).each do |age|
-        key = age.to_s.intern
-        Brock::InputParser.stats[key].should_not be_nil
+        Brock::InputParser.stats[age].should_not be_nil
       end
     end
 
@@ -65,7 +64,7 @@ describe Brock::InputParser do
       end
 
       describe "reading stat line" do
-        let(:year_stats) { Brock::InputParser.stats[:"27"] }
+        let(:year_stats) { Brock::InputParser.stats[27] }
 
         it "calculates corresponding year" do
           year_stats[:year].should eq(1999)

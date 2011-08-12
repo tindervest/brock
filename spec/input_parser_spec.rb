@@ -26,7 +26,6 @@ describe Brock::InputParser do
     include FakeFS::SpecHelpers
 
     let(:path) { "/path/test.txt" }
-    
 
     describe "reading properly formatted file" do
 
@@ -35,7 +34,7 @@ describe Brock::InputParser do
         File.open(path, 'w') do |f|
           f << "2000 28 26 29 4.67\n"
           f << "162 600 120 180 20 3 15 115 98\n" # age 26, year 1998
-          f << "122 545 87  122 12 0 13 88 63\n" #age 27, year 1999
+          f << "122 545 87 122 12 0 13 88 63\n" #age 27, year 1999
         end
         
         Brock::InputParser.readData(path)
@@ -123,7 +122,19 @@ describe Brock::InputParser do
         it "raises error when configuration line is not in correct format " do
           lambda { Brock::InputParser.readData(path) }.should raise_error(Brock::MalformattedArgumentError, "Configuration line formatted incorrectly: 2XKXKX KKK")
         end
+      end
 
+      describe "reading stat line" do
+        before(:each) do
+          File.open(path, 'w') do |f|
+            f << "2000 28 26 29 4.67\n"
+            f << "600 120 180 20 3 15 115 98\n" # age 26, year 1998
+          end
+        end
+
+        it "raises error when stat line does not contain 9 numeric values separated by spaces" do
+          lambda { Brock::InputParser.readData(path) }.should raise_error(Brock::MalformattedArgumentError, "Stat line formatted incorrectly: 600 120 180 20 3 15 115 98\n" )
+        end
       end
     end
   end

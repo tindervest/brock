@@ -38,8 +38,10 @@ class Brock
       end
 
       def extract_configuration_data(line)
-        raise Brock::MalformattedArgumentError, "Configuration line formatted incorrectly: #{line}" unless line.match /(\d{4}|\d{2}|\d+\.\d+)+/
-        config_values = line.scan(/(\d{4}|\d{2}|\d+\.\d+)+/)
+        config_regex = /(\d{4}|\d{2}|\d+\.\d+)+/
+        raise Brock::MalformattedArgumentError, "Configuration line formatted incorrectly: #{line}" unless line.match(config_regex)
+
+        config_values = line.scan(config_regex)
         positions = %w{ totals_year totals_age stats_start_age current_age sustenance }
 
         populate_hash_from_extracted_values(configuration, positions, config_values)
@@ -47,6 +49,8 @@ class Brock
       end
 
       def extract_stat_line(line, index)
+        validate_stat_line(line)
+
         stat_values = line.scan(/(\d+)/)
         positions = %w{ games at_bats runs hits doubles triples home_runs rbi walks }
 
@@ -74,6 +78,12 @@ class Brock
           hash[positions[index].intern] = values[index][0].to_i
         end
       end
+
+      def validate_stat_line(line)
+        line_regex = /\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+/
+        raise Brock::MalformattedArgumentError, "Stat line formatted incorrectly: #{line}" unless line.match(line_regex)
+      end
+
     end
 
     module ClassMethods

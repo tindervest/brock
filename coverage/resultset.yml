@@ -1,26 +1,26 @@
---- 
-/home/enrique/.rvm/gems/ruby-1.9.2-p136/bin/rspec spec: 
-  :original_result: 
-    /home/enrique/rubys/code/brock/lib/brock/input_parser.rb: 
+---
+/home/enrique/.rvm/gems/ruby-1.9.2-p136/bin/rspec spec:
+  :original_result:
+    /home/enrique/rubys/code/brock/lib/brock/input_parser.rb:
     - 1
-    - 
+    - !!null 
     - 1
-    - 
+    - !!null 
     - 1
-    - 
+    - !!null 
     - 1
     - 1
     - 0
-    - 
-    - 
+    - !!null 
+    - !!null 
     - 1
     - 1166
-    - 
-    - 
+    - !!null 
+    - !!null 
     - 1
     - 308
-    - 
-    - 
+    - !!null 
+    - !!null 
     - 1
     - 32
     - 32
@@ -28,99 +28,224 @@
     - 32
     - 93
     - 92
-    - 
-    - 
-    - 
-    - 
+    - !!null 
+    - !!null 
+    - !!null 
+    - !!null 
     - 1
-    - 
+    - !!null 
     - 1
     - 32
     - 768
-    - 
+    - !!null 
     - 32
     - 32
-    - 
-    - 
+    - !!null 
+    - !!null 
     - 1
     - 32
     - 32
-    - 
+    - !!null 
     - 31
     - 31
     - 31
-    - 
-    - 
+    - !!null 
+    - !!null 
     - 1
     - 61
-    - 
+    - !!null 
     - 60
-    - 
+    - !!null 
     - 60
     - 60
     - 60
-    - 
-    - 
+    - !!null 
+    - !!null 
     - 1
     - 60
     - 60
     - 60
     - 60
     - 60
-    - 
+    - !!null 
     - 60
-    - 
-    - 
+    - !!null 
+    - !!null 
     - 1
     - 60
     - 60
-    - 
-    - 
+    - !!null 
+    - !!null 
     - 1
     - 91
     - 695
-    - 
-    - 
-    - 
+    - !!null 
+    - !!null 
+    - !!null 
     - 1
     - 61
     - 61
-    - 
-    - 
+    - !!null 
+    - !!null 
     - 1
     - 32
     - 32
     - 288
-    - 
-    - 
-    - 
+    - !!null 
+    - !!null 
+    - !!null 
     - 1
     - 60
     - 540
     - 540
-    - 
-    - 
-    - 
+    - !!null 
+    - !!null 
+    - !!null 
     - 1
     - 980
-    - 
-    - 
+    - !!null 
+    - !!null 
     - 1
     - 31
-    - 
-    - 
-    - 
-    - 
+    - !!null 
+    - !!null 
+    - !!null 
+    - !!null 
     - 1
-    - 
-    - 
-    - 
-    - 
-    /home/enrique/rubys/code/brock/lib/brock/error.rb: 
+    - !!null 
+    - !!null 
+    - !!null 
+    - !!null 
+    /home/enrique/rubys/code/brock/lib/brock/error.rb:
     - 1
-    - 
-    - 
+    - !!null 
+    - !!null 
     - 1
-    - 
-    - 
-  :created_at: 2011-08-13 11:33:52.132464 -04:00
+    - !!null 
+    - !!null 
+  :created_at: 2011-08-13 11:33:52.132464000 -04:00
+/home/enrique/.rvm/gems/ruby-1.9.2-p290/bin/rspec spec:
+  :original_result:
+    /home/enrique/rubys/code/brock/lib/brock/input_parser.rb:
+    - 1
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - 1
+    - 0
+    - !!null 
+    - !!null 
+    - 1
+    - 1166
+    - !!null 
+    - !!null 
+    - 1
+    - 308
+    - !!null 
+    - !!null 
+    - 1
+    - 32
+    - 32
+    - 32
+    - 32
+    - 93
+    - 92
+    - !!null 
+    - !!null 
+    - !!null 
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - 32
+    - 768
+    - !!null 
+    - 32
+    - 32
+    - !!null 
+    - !!null 
+    - 1
+    - 32
+    - 32
+    - !!null 
+    - 31
+    - 31
+    - 31
+    - !!null 
+    - !!null 
+    - 1
+    - 61
+    - !!null 
+    - 60
+    - !!null 
+    - 60
+    - 60
+    - 60
+    - !!null 
+    - !!null 
+    - 1
+    - 60
+    - 60
+    - 60
+    - 60
+    - 60
+    - !!null 
+    - 60
+    - !!null 
+    - !!null 
+    - 1
+    - 60
+    - 60
+    - !!null 
+    - !!null 
+    - 1
+    - 91
+    - 695
+    - !!null 
+    - !!null 
+    - !!null 
+    - 1
+    - 61
+    - 61
+    - !!null 
+    - !!null 
+    - 1
+    - 32
+    - 32
+    - 288
+    - !!null 
+    - !!null 
+    - !!null 
+    - 1
+    - 60
+    - 540
+    - 540
+    - !!null 
+    - !!null 
+    - !!null 
+    - 1
+    - 980
+    - !!null 
+    - !!null 
+    - 1
+    - 31
+    - !!null 
+    - !!null 
+    - !!null 
+    - !!null 
+    - 1
+    - !!null 
+    - !!null 
+    - !!null 
+    - !!null 
+    /home/enrique/rubys/code/brock/lib/brock/error.rb:
+    - 1
+    - !!null 
+    - !!null 
+    - 1
+    - !!null 
+    - !!null 
+  :created_at: 2011-08-13 12:19:58.099434223 -04:00

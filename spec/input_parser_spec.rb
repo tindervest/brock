@@ -7,19 +7,6 @@ require 'fakefs/spec_helpers'
 describe Brock::InputParser do
 
   describe "Initial state" do
-    it "contains stats hash property" do
-      Brock::InputParser.stats.should_not be_nil
-    end
-
-    it "contains entry for each age between 19 and 42 inclusively" do
-      (19..42).each do |age|
-        Brock::InputParser.stats[age].should_not be_nil
-      end
-    end
-
-    it "contains configuration hash in stats" do
-      Brock::InputParser.configuration.should_not be_nil
-    end
   end
 
   describe "reading file input" do
@@ -38,6 +25,69 @@ describe Brock::InputParser do
         end
         
         Brock::InputParser.readData(path)
+      end
+
+      it "contains stats hash property" do
+        Brock::InputParser.stats.should_not be_nil
+      end
+
+      it "contains entry for each age between 19 and 42 inclusively" do
+        (19..42).each do |age|
+          Brock::InputParser.stats[age].should_not be_nil
+        end
+      end
+
+      it "contains entry for cummulative stats" do
+        Brock::InputParser.stats[:totals].should_not be_nil
+      end
+
+      it "contains configuration hash in stats" do
+        Brock::InputParser.configuration.should_not be_nil
+      end
+
+      it "resets stats hash when reading data" do
+        Brock::InputParser.readData(path)
+        Brock::InputParser.stats[:totals][:games].should eq(284)
+      end
+
+      describe "reading entire file" do
+        let(:total_stats) { Brock::InputParser.stats[:totals] }
+        
+        it "accumulates games" do
+          total_stats[:games].should eq(284)
+        end
+
+        it "accumulates at bats" do
+          total_stats[:at_bats].should eq(1145)
+        end
+
+        it "accumulates runs" do
+          total_stats[:runs].should eq(207)
+        end
+
+        it "accumulates hits" do
+          total_stats[:hits].should eq(302)
+        end
+
+        it "accumulates doubles" do
+          total_stats[:doubles].should eq(32)
+        end
+
+        it "accumulates triples" do
+          total_stats[:triples].should eq(3)
+        end
+
+        it "accumulates home runs" do
+          total_stats[:home_runs].should eq(28)
+        end
+
+        it "accumulates rbis" do
+          total_stats[:rbi].should eq(203)
+        end
+
+        it "accumulates walks" do
+          total_stats[:walks].should eq(161)
+        end
       end
 
       describe "reading specification line" do

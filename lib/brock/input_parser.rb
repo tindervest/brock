@@ -79,7 +79,7 @@ class Brock
       end
 
       def validate_stat_line(line)
-        line_regex = /\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+/
+        line_regex = /\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+/
         raise Brock::MalformattedArgumentError, "Stat line formatted incorrectly: #{line}" unless line.match(line_regex)
       end
 
@@ -98,7 +98,7 @@ class Brock
       end
 
       def stat_line_attributes
-        %w{ games at_bats runs hits doubles triples home_runs rbi walks }
+        %w{ games at_bats runs hits doubles triples home_runs rbi sb cs walks strike_outs gidp hbp sh sf iw } 
       end
 
       def config_line_attributes

@@ -6,9 +6,6 @@ require 'fakefs/spec_helpers'
 
 describe Brock::InputParser do
 
-  describe "Initial state" do
-  end
-
   describe "reading file input" do
     include FakeFS::SpecHelpers
 
@@ -20,8 +17,8 @@ describe Brock::InputParser do
         
         File.open(path, 'w') do |f|
           f << "2000 28 26 29 4.67\n"
-          f << "162 600 120 180 20 3 15 115 98\n" # age 26, year 1998
-          f << "122 545 87 122 12 0 13 88 63\n" #age 27, year 1999
+          f << "162 600 120 180 20 3 15 115 10 5 98 115 10 7 2 5 22\n" # age 26, year 1998
+          f << "122 545 87 122 12 0 13 88 5 4 63 89 14 8 1 2 17\n" #age 27, year 1999
         end
         
         Brock::InputParser.readData(path)
@@ -153,8 +150,41 @@ describe Brock::InputParser do
           year_stats[:rbi].should eq(88)
         end
 
+#          "122 545 87 122 12 0 13 88 5 4 63 89 14 8 1 2 17"
+        it "extracts stolen bases" do
+          year_stats[:sb].should eq(5)
+        end
+        
+        it "extracts caught stealing" do
+          year_stats[:cs].should eq(4)
+        end
+
         it "extracts walks" do
           year_stats[:walks].should eq(63)
+        end
+
+        it "extracts strikeouts" do
+          year_stats[:strike_outs].should eq(89)
+        end
+
+        it "extracts double plays grounded into" do
+          year_stats[:gidp].should eq(14)
+        end
+
+        it "extracts hit by pitch" do
+          year_stats[:hbp].should eq(8)
+        end
+
+        it "extracts sacrifice hits" do
+          year_stats[:sh].should eq(1)
+        end
+
+        it "extracts sacrifice flies" do
+          year_stats[:sf].should eq(2)
+        end
+
+        it "extracts intentional base on balls" do
+          year_stats[:iw].should eq(17)
         end
       end
     end
@@ -182,7 +212,7 @@ describe Brock::InputParser do
           end
         end
 
-        it "raises error when stat line does not contain 9 numeric values separated by spaces" do
+        it "raises error when stat line does not contain 17 numeric values separated by spaces" do
           lambda { Brock::InputParser.readData(path) }.should raise_error(Brock::MalformattedArgumentError, "Stat line formatted incorrectly: 600 120 180 20 3 15 115 98\n" )
         end
       end

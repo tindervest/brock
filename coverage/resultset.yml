@@ -258,6 +258,32 @@
     - !!null 
     - 1
     - 1
+    - !!null 
+    - 1
+    - !!null 
+    - !!null 
+    - 1
+    - 2
+    - 2
+    - !!null 
+    - 1
+    - 1
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - !!null 
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - 2
+    - !!null 
+    - !!null 
+    - 1
+    - 1
+    - !!null 
+    - !!null 
     - 1
     - 1
     - !!null 
@@ -278,99 +304,99 @@
     - !!null 
     - !!null 
     - 1
-    - 2078
+    - 2510
     - !!null 
     - !!null 
     - 1
-    - 388
+    - 468
     - !!null 
     - !!null 
     - 1
-    - 40
-    - 40
-    - 40
-    - 40
-    - 117
-    - 116
+    - 48
+    - 48
+    - 48
+    - 48
+    - 141
+    - 140
     - !!null 
-    - !!null 
-    - !!null 
-    - !!null 
-    - 1
-    - !!null 
-    - 1
-    - 40
-    - 960
-    - !!null 
-    - 40
-    - 40
-    - !!null 
-    - !!null 
-    - 1
-    - 40
-    - 40
-    - !!null 
-    - 39
-    - 39
-    - 39
-    - !!null 
-    - !!null 
-    - 1
-    - 77
-    - !!null 
-    - 76
-    - !!null 
-    - 76
-    - 76
-    - 76
-    - !!null 
-    - !!null 
-    - 1
-    - 76
-    - 76
-    - 76
-    - 76
-    - 76
-    - !!null 
-    - 76
-    - !!null 
-    - !!null 
-    - 1
-    - 76
-    - 76
-    - !!null 
-    - !!null 
-    - 1
-    - 115
-    - 1487
     - !!null 
     - !!null 
     - !!null 
     - 1
-    - 77
-    - 77
+    - !!null 
+    - 1
+    - 48
+    - 1152
+    - !!null 
+    - 48
+    - 48
     - !!null 
     - !!null 
     - 1
-    - 40
-    - 40
-    - 680
+    - 48
+    - 48
+    - !!null 
+    - 47
+    - 47
+    - 47
+    - !!null 
+    - !!null 
+    - 1
+    - 93
+    - !!null 
+    - 92
+    - !!null 
+    - 92
+    - 92
+    - 92
+    - !!null 
+    - !!null 
+    - 1
+    - 92
+    - 92
+    - 92
+    - 92
+    - 92
+    - !!null 
+    - 92
+    - !!null 
+    - !!null 
+    - 1
+    - 92
+    - 92
+    - !!null 
+    - !!null 
+    - 1
+    - 139
+    - 1799
     - !!null 
     - !!null 
     - !!null 
     - 1
-    - 76
-    - 1292
-    - 1292
+    - 93
+    - 93
+    - !!null 
+    - !!null 
+    - 1
+    - 48
+    - 48
+    - 816
     - !!null 
     - !!null 
     - !!null 
     - 1
-    - 2164
+    - 92
+    - 1564
+    - 1564
+    - !!null 
     - !!null 
     - !!null 
     - 1
-    - 39
+    - 2612
+    - !!null 
+    - !!null 
+    - 1
+    - 47
     - !!null 
     - !!null 
     - !!null 
@@ -387,7 +413,7 @@
     - 1
     - !!null 
     - !!null 
-  :created_at: 2011-08-14 19:47:12.893263625 -04:00
+  :created_at: 2011-08-15 00:12:35.368886481 -04:00
 RSpec:
   :original_result:
     /home/enrique/rubys/code/brock/lib/brock/stats_calculator.rb:
@@ -398,13 +424,38 @@ RSpec:
     - 1
     - 1
     - 1
+    - !!null 
+    - !!null 
+    - 1
+    - 2
+    - 2
+    - !!null 
+    - 1
+    - 1
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - !!null 
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - 2
+    - !!null 
+    - !!null 
+    - 1
+    - 1
+    - !!null 
+    - !!null 
+    - 1
     - 1
     - !!null 
     - !!null 
     - !!null 
     - !!null 
     - !!null 
-  :created_at: 2011-08-14 19:50:34.609682307 -04:00
+  :created_at: 2011-08-15 00:15:38.623371483 -04:00
 brock_specs:
   :original_result:
     /home/enrique/rubys/code/brock/lib/brock/stats_calculator.rb:

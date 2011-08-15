@@ -81,9 +81,41 @@ describe Brock::InputParser do
         it "accumulates rbis" do
           total_stats[:rbi].should eq(203)
         end
+        
+        it "accumulates stolen bases" do
+          total_stats[:sb].should eq(15)
+        end
+
+        it "accumulates caught stealing" do
+          total_stats[:cs].should eq(9)
+        end
 
         it "accumulates walks" do
           total_stats[:walks].should eq(161)
+        end
+
+        it "accumulates strike outs" do
+          total_stats[:strike_outs].should eq(204)
+        end
+
+        it "accumulates grounded into dp" do
+          total_stats[:gidp].should eq(24)
+        end
+
+        it "accumulates hit by pitch" do
+          total_stats[:hbp].should eq(15)
+        end
+
+        it "accummulates sacrifice hits" do
+          total_stats[:sh].should eq(3)
+        end
+
+        it "accumulates sacrifice flies" do
+          total_stats[:sf].should eq(7)
+        end
+
+        it "accumulates intentional walks" do
+          total_stats[:iw].should eq(39)
         end
       end
 
@@ -150,7 +182,6 @@ describe Brock::InputParser do
           year_stats[:rbi].should eq(88)
         end
 
-#          "122 545 87 122 12 0 13 88 5 4 63 89 14 8 1 2 17"
         it "extracts stolen bases" do
           year_stats[:sb].should eq(5)
         end

@@ -1,13 +1,21 @@
+require File.expand_path(File.dirname(__FILE__) + '/validator')
+require File.expand_path(File.dirname(__FILE__) + '/error')
+
 class Brock
 
   module StatsCalculator
 
+    include Validator
+
     class << self
       def total_bases(stats)
+        validate_stats_hash(stats)
         singles(stats) + 2*stats[:doubles] + 3*stats[:triples] + 4*stats[:home_runs]
       end
 
       def runs_created(stats)
+        validate_stats_hash(stats)
+
         c = stats[:at_bats] + stats[:walks] + stats[:hbp] + stats[:sh] + stats[:sf]
         return 0 unless c > 0
 

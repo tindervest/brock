@@ -251,18 +251,64 @@
   :created_at: 2011-08-13 12:19:58.099434223 -04:00
 /home/enrique/.rvm/gems/ruby-1.9.2-p290@brock/bin/rspec spec:
   :original_result:
+    /home/enrique/rubys/code/brock/lib/brock/validator.rb:
+    - 1
+    - !!null 
+    - 1
+    - 1
+    - 2
+    - !!null 
+    - !!null 
+    - 1
+    - 1
+    - 2672
+    - !!null 
+    - !!null 
+    - 1
+    - 47
+    - !!null 
+    - !!null 
+    - 1
+    - 47
+    - !!null 
+    - !!null 
+    - 1
+    - 48
+    - 48
+    - !!null 
+    - !!null 
+    - 1
+    - 93
+    - 93
+    - !!null 
+    - !!null 
+    - 1
+    - 5
+    - 53
+    - !!null 
+    - !!null 
+    - !!null 
+    - !!null 
+    - !!null 
     /home/enrique/rubys/code/brock/lib/brock/stats_calculator.rb:
     - 1
-    - !!null 
-    - 1
-    - !!null 
-    - 1
     - 1
     - !!null 
     - 1
     - !!null 
+    - 1
     - !!null 
     - 1
+    - !!null 
+    - 1
+    - 1
+    - 2
+    - 1
+    - !!null 
+    - !!null 
+    - 1
+    - 3
+    - !!null 
     - 2
     - 2
     - !!null 
@@ -289,9 +335,22 @@
     - !!null 
     - !!null 
     - !!null 
+    - !!null 
+    - !!null 
+    /home/enrique/rubys/code/brock/lib/brock/error.rb:
+    - 1
+    - !!null 
+    - !!null 
+    - 1
+    - !!null 
+    - !!null 
+    - 1
     - !!null 
     - !!null 
     /home/enrique/rubys/code/brock/lib/brock/input_parser.rb:
+    - 1
+    - 1
+    - !!null 
     - 1
     - !!null 
     - 1
@@ -334,7 +393,6 @@
     - !!null 
     - 1
     - 48
-    - 48
     - !!null 
     - 47
     - 47
@@ -372,10 +430,6 @@
     - !!null 
     - !!null 
     - !!null 
-    - 1
-    - 93
-    - 93
-    - !!null 
     - !!null 
     - 1
     - 48
@@ -391,17 +445,98 @@
     - !!null 
     - !!null 
     - !!null 
-    - 1
-    - 2612
     - !!null 
     - !!null 
     - 1
-    - 47
     - !!null 
     - !!null 
+    - !!null 
+    - !!null 
+  :created_at: 2011-08-17 01:26:30.090288699 -04:00
+RSpec:
+  :original_result:
+    /home/enrique/rubys/code/brock/lib/brock/stats_calculator.rb:
+    - 1
+    - 1
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - 1
+    - 2
+    - 1
     - !!null 
     - !!null 
     - 1
+    - 3
+    - !!null 
+    - 2
+    - 2
+    - !!null 
+    - 1
+    - 1
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - !!null 
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - 2
+    - !!null 
+    - !!null 
+    - 1
+    - 1
+    - !!null 
+    - !!null 
+    - 1
+    - 1
+    - !!null 
+    - !!null 
+    - !!null 
+    - !!null 
+    - !!null 
+    /home/enrique/rubys/code/brock/lib/brock/validator.rb:
+    - 1
+    - !!null 
+    - 1
+    - 1
+    - 1
+    - !!null 
+    - !!null 
+    - 1
+    - 1
+    - 60
+    - !!null 
+    - !!null 
+    - 1
+    - 0
+    - !!null 
+    - !!null 
+    - 1
+    - 0
+    - !!null 
+    - !!null 
+    - 1
+    - 0
+    - 0
+    - !!null 
+    - !!null 
+    - 1
+    - 0
+    - 0
+    - !!null 
+    - !!null 
+    - 1
+    - 5
+    - 53
+    - !!null 
     - !!null 
     - !!null 
     - !!null 
@@ -413,49 +548,10 @@
     - 1
     - !!null 
     - !!null 
-  :created_at: 2011-08-15 00:12:35.368886481 -04:00
-RSpec:
-  :original_result:
-    /home/enrique/rubys/code/brock/lib/brock/stats_calculator.rb:
-    - 1
-    - !!null 
-    - 1
-    - !!null 
-    - 1
-    - 1
     - 1
     - !!null 
     - !!null 
-    - 1
-    - 2
-    - 2
-    - !!null 
-    - 1
-    - 1
-    - !!null 
-    - 1
-    - !!null 
-    - 1
-    - !!null 
-    - !!null 
-    - 1
-    - !!null 
-    - 1
-    - 2
-    - !!null 
-    - !!null 
-    - 1
-    - 1
-    - !!null 
-    - !!null 
-    - 1
-    - 1
-    - !!null 
-    - !!null 
-    - !!null 
-    - !!null 
-    - !!null 
-  :created_at: 2011-08-15 00:15:38.623371483 -04:00
+  :created_at: 2011-08-17 01:00:57.030401829 -04:00
 brock_specs:
   :original_result:
     /home/enrique/rubys/code/brock/lib/brock/stats_calculator.rb:

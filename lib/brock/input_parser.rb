@@ -1,8 +1,11 @@
 require File.expand_path(File.dirname(__FILE__) + '/error')
+require File.expand_path(File.dirname(__FILE__) + '/validator')
 
 class Brock
 
   module InputParser
+
+    include Validator
 
     class << self
       def included(klass)
@@ -39,8 +42,7 @@ class Brock
       end
 
       def extract_configuration_data(line)
-        config_regex = /(\d{4}|\d{2}|\d+\.\d+)+/
-        raise Brock::MalformattedArgumentError, "Configuration line formatted incorrectly: #{line}" unless line.match(config_regex)
+        validate_config_line(line)
 
         config_values = line.scan(config_regex)
         populate_hash_from_extracted_values(configuration, config_line_attributes, config_values)
@@ -78,10 +80,6 @@ class Brock
         end
       end
 
-      def validate_stat_line(line)
-        line_regex = /\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+\s\d+/
-        raise Brock::MalformattedArgumentError, "Stat line formatted incorrectly: #{line}" unless line.match(line_regex)
-      end
 
       def initialize_totals_entry(stats_hash)
         stats_hash[:totals] = {}
@@ -95,14 +93,6 @@ class Brock
           stat = stat_line_attributes[index].intern
           stats[:totals][stat] += yearly_stats[stat] 
         end
-      end
-
-      def stat_line_attributes
-        %w{ games at_bats runs hits doubles triples home_runs rbi sb cs walks strike_outs gidp hbp sh sf iw } 
-      end
-
-      def config_line_attributes
-        %w{ totals_year totals_age stats_start_age current_age sustenance }
       end
 
     end

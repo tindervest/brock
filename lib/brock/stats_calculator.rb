@@ -1,5 +1,4 @@
 require File.expand_path(File.dirname(__FILE__) + '/validator')
-require File.expand_path(File.dirname(__FILE__) + '/error')
 
 class Brock
 

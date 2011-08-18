@@ -292,7 +292,6 @@
     - !!null 
     /home/enrique/rubys/code/brock/lib/brock/stats_calculator.rb:
     - 1
-    - 1
     - !!null 
     - 1
     - !!null 
@@ -335,16 +334,6 @@
     - !!null 
     - !!null 
     - !!null 
-    - !!null 
-    - !!null 
-    /home/enrique/rubys/code/brock/lib/brock/error.rb:
-    - 1
-    - !!null 
-    - !!null 
-    - 1
-    - !!null 
-    - !!null 
-    - 1
     - !!null 
     - !!null 
     /home/enrique/rubys/code/brock/lib/brock/input_parser.rb:
@@ -452,7 +441,17 @@
     - !!null 
     - !!null 
     - !!null 
-  :created_at: 2011-08-17 01:26:30.090288699 -04:00
+    /home/enrique/rubys/code/brock/lib/brock/error.rb:
+    - 1
+    - !!null 
+    - !!null 
+    - 1
+    - !!null 
+    - !!null 
+    - 1
+    - !!null 
+    - !!null 
+  :created_at: 2011-08-17 21:46:32.689527501 -04:00
 RSpec:
   :original_result:
     /home/enrique/rubys/code/brock/lib/brock/stats_calculator.rb:

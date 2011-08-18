@@ -68,6 +68,11 @@ describe "Brock::StatsCalculator" do
         games = Brock::StatsCalculator.prorate_games_played(1995, 144)
         games.should eq(162)
       end
+
+      it "prorates partial played seasons correctly" do
+        games = Brock::StatsCalculator.prorate_games_played(1919, 77)
+        games.should eq(81)
+      end
     end
   end
 end

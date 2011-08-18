@@ -1,10 +1,13 @@
 require File.expand_path(File.dirname(__FILE__) + '/validator')
+require File.expand_path(File.dirname(__FILE__) + '/prorator')
+require File.expand_path(File.dirname(__FILE__) + '/error')
 
 class Brock
 
   module StatsCalculator
 
     include Validator
+    include Prorator
 
     class << self
       def total_bases(stats)

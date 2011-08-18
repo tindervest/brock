@@ -1,8 +1,11 @@
 class Brock
 
   module Validator
-    def self.included(klass)
-      klass.send :extend, ClassMethods
+
+    class << self
+      def included(klass)
+        klass.send :extend, ClassMethods
+      end
     end
 
     module ClassMethods

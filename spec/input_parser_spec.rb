@@ -214,7 +214,7 @@ describe Brock::InputParser do
           year_stats[:sf].should eq(2)
         end
 
-        it "extracts intentional base on balls" do
+        it "extracts intentional walks" do
           year_stats[:iw].should eq(17)
         end
       end

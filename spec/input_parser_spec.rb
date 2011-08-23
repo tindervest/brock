@@ -217,6 +217,7 @@ describe Brock::InputParser do
         it "extracts intentional walks" do
           year_stats[:iw].should eq(17)
         end
+
       end
     end
 

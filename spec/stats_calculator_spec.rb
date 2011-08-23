@@ -34,7 +34,7 @@ describe "Brock::StatsCalculator" do
     end
   end
 
-  describe "prorate_games_played" do
+  describe "#prorate_games_played" do
     describe "for non-strike seasons" do
 
       it "prorates based on 154 games for any season prior to 1961" do
@@ -75,4 +75,129 @@ describe "Brock::StatsCalculator" do
       end
     end
   end
+
+  describe "#sustenance_level" do
+
+    describe "calculation for ages 20 and 21" do
+
+      it "returns value for age 20" do
+        validate_sustenance_calculation(20, 5.00, 4.900)
+      end
+
+      it "returns value for age 21" do
+        validate_sustenance_calculation(21, 5.00, 4.800)
+      end
+    end
+
+    describe "calculation for ages 22 through 25" do
+
+      it "returns value for age 22" do
+        validate_sustenance_calculation(22, 5.00, 4.800)
+      end 
+
+      it "returns value for age 23" do
+        validate_sustenance_calculation(23, 5.00, 4.800)
+      end
+
+      it "returns value for age 24" do
+        validate_sustenance_calculation(24, 5.00, 4.800)
+      end
+
+      it "returns value for age 25" do
+        validate_sustenance_calculation(25, 5.00, 4.800)
+      end
+
+    end
+
+    describe "calculation for ages 26 through 27" do
+
+      it "returns value for age 26" do
+        validate_sustenance_calculation(26, 5.00, 4.815)
+      end
+
+      it "returns value for age 27" do
+        validate_sustenance_calculation(27, 5.00, 4.830)
+      end
+    end
+
+    describe "calculation for ages 28 through 30" do
+      it "returns value for age 28" do
+        validate_sustenance_calculation(28, 5.00, 4.865)
+      end
+
+      it "returns value for age 29" do
+        validate_sustenance_calculation(29, 5.00, 4.900)
+      end
+
+      it "returns value for age 30" do
+        validate_sustenance_calculation(30, 5.00, 4.935)
+      end
+    end
+
+    describe "calculation for age 31" do
+      it "returns correct value" do
+        validate_sustenance_calculation(31, 5.00, 4.980)
+      end
+    end
+
+    describe "calculation for age 32" do
+      it "returns correct value" do
+        validate_sustenance_calculation(32, 5.00, 5.035)
+      end
+    end
+    
+    describe "calculation for age 33" do
+      it "returns correct value" do
+        validate_sustenance_calculation(33, 5.00, 5.105)
+      end
+    end
+
+    describe "calculation for ages 34 through 36" do
+
+      it "returns correct value for age 34" do
+        validate_sustenance_calculation(34, 5.00, 5.180)
+      end
+
+      it "returns correct value for age 35" do
+        validate_sustenance_calculation(35, 5.00, 5.255)
+      end
+
+      it "returns correct value for age 36" do
+        validate_sustenance_calculation(36, 5.00, 5.330) 
+      end
+    end
+
+    describe "calculation for age 37" do
+      it "returns correct value" do
+        validate_sustenance_calculation(37, 5.00, 5.380)
+      end
+    end
+
+    describe "calculation for age 38" do
+      it "returns correct value" do
+        validate_sustenance_calculation(38, 5.00, 5.455)
+      end
+    end
+
+    describe "calculation for ages 39 through 41" do
+      it "returns correct value for age 39" do
+        validate_sustenance_calculation(39, 5.00, 5.505)
+      end
+
+      it "returns correct value for age 40" do
+        validate_sustenance_calculation(40, 5.00, 5.555)
+      end
+
+      it "returns correct value for age 41" do
+        validate_sustenance_calculation(41, 5.00, 5.605)
+      end
+    end
+
+    def validate_sustenance_calculation(age, initial_value, expected_value)
+      result = Brock::StatsCalculator.sustenance_level(age, initial_value)
+      result.should eq(expected_value)
+    end
+
+  end
+
 end

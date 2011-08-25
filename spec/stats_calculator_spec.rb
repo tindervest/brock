@@ -34,6 +34,16 @@ describe "Brock::StatsCalculator" do
     end
   end
 
+  describe "#runs_created_25" do
+    it "returns zero when outs component is zero" do
+      Brock::StatsCalculator.runs_created_25(zero_stats).should eq(0)
+    end
+
+    it "calculates value based on runs created per out rate" do
+      Brock::StatsCalculator.runs_created_25(valid_stats).should eq(6.32)
+    end
+  end
+
   describe "#prorate_games_played" do
     describe "for non-strike seasons" do
 

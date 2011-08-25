@@ -29,6 +29,16 @@ class Brock
         return rc.round(1)
       end
 
+      def runs_created_25(stats)
+        validate_stats_hash(stats)
+
+        outs = outs(stats) 
+        return 0 unless outs > 0
+
+        rc = runs_created(stats)
+        (rc/outs*25).round(2)
+      end
+
       def sustenance_level(age, initial_value)
         span = Range.new(20, age)
         result = initial_value
@@ -52,6 +62,10 @@ class Brock
 
       def singles(stats)
         stats[:hits] - stats[:doubles] - stats[:triples] - stats[:home_runs]
+      end
+
+      def outs(stats)
+        stats[:at_bats] - stats[:hits] + stats[:gidp] + stats[:cs] + stats[:sf]
       end
 
       def run_values_for_hits(stats)

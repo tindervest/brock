@@ -20,7 +20,7 @@ class Brock
         stats[:config] ||= {}
       end
 
-      def readData(path)
+      def read_data(path)
         initialize_stats(stats)
         File.open(path) do |f|
           lines = f.readlines
@@ -36,6 +36,7 @@ class Brock
       def initialize_stats(stats_hash = {})
         (19..42).each do |age|
           stats_hash[age] = {}
+          stats_hash[age][:playtime] = {}
         end
         initialize_totals_entry(stats_hash)
         stats_hash
@@ -79,7 +80,6 @@ class Brock
           hash[positions[index].intern] = values[index][0].to_i
         end
       end
-
 
       def initialize_totals_entry(stats_hash)
         stats_hash[:totals] = {}

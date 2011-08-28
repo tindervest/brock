@@ -21,7 +21,7 @@ describe Brock::InputParser do
           f << "122 545 87 122 12 0 13 88 5 4 63 89 14 8 1 2 17\n" #age 27, year 1999
         end
         
-        Brock::InputParser.readData(path)
+        Brock::InputParser.read_data(path)
       end
 
       it "contains stats hash property" do
@@ -43,7 +43,7 @@ describe Brock::InputParser do
       end
 
       it "resets stats hash when reading data" do
-        Brock::InputParser.readData(path)
+        Brock::InputParser.read_data(path)
         Brock::InputParser.stats[:totals][:games].should eq(284)
       end
 
@@ -232,7 +232,7 @@ describe Brock::InputParser do
         end
       
         it "raises error when configuration line is not in correct format " do
-          lambda { Brock::InputParser.readData(path) }.should raise_error(Brock::MalformattedArgumentError, "Configuration line formatted incorrectly: 2XKXKX KKK")
+          lambda { Brock::InputParser.read_data(path) }.should raise_error(Brock::MalformattedArgumentError, "Configuration line formatted incorrectly: 2XKXKX KKK")
         end
       end
 
@@ -245,7 +245,7 @@ describe Brock::InputParser do
         end
 
         it "raises error when stat line does not contain 17 numeric values separated by spaces" do
-          lambda { Brock::InputParser.readData(path) }.should raise_error(Brock::MalformattedArgumentError, "Stat line formatted incorrectly: 600 120 180 20 3 15 115 98\n" )
+          lambda { Brock::InputParser.read_data(path) }.should raise_error(Brock::MalformattedArgumentError, "Stat line formatted incorrectly: 600 120 180 20 3 15 115 98\n" )
         end
       end
     end

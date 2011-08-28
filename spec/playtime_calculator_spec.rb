@@ -43,4 +43,35 @@ describe "PlaytimeCalculator" do
 
   end
 
+  describe "#play_factor" do
+    describe "for age 20" do
+      it "returns 0" do
+        stats = { }
+        Brock::PlaytimeCalculator.play_factor(20, stats).should eq(0)
+      end
+    end
+
+    describe "for ages 21 through 24" do
+      it "returns 1 when current year regular + bench and prior year bench" do
+        stats = { 20 => { :playtime => { :bench => true} }, 21 => { :playtime => { :regular => true, :bench => true} } }
+        Brock::PlaytimeCalculator.play_factor(21, stats).should eq(1.00)
+      end
+
+      it "returns 0.667 when current bench is true, current regular is false  and prior bench is true" do
+        stats = { 20 => { :playtime => { :bench => true} }, 21 => { :playtime => { :regular => false, :bench => true} } }
+        Brock::PlaytimeCalculator.play_factor(21, stats).should eq(0.667)
+      end 
+
+      it "returns 0.333 when current regular and bench are false and prior bench is true" do
+        stats = { 20 => { :playtime => { :bench => true} }, 21 => { :playtime => { :regular => false, :bench => false} } }
+        Brock::PlaytimeCalculator.play_factor(21, stats).should eq(0.333)
+      end
+
+      it "returns 0 when current and prior year regular and bench values are false" do
+        stats = { 20 => { :playtime => { :bench => false} }, 21 => { :playtime => { :regular => false, :bench => false} } }
+        Brock::PlaytimeCalculator.play_factor(21, stats).should eq(0)
+      end
+    end
+  end
+
 end

@@ -272,16 +272,18 @@
     - !!null 
     - !!null 
     - 1
-    - 47
-    - !!null 
-    - !!null 
-    - 1
-    - 48
-    - 48
+    - 95
     - !!null 
     - !!null 
     - 1
     - 93
+    - !!null 
+    - !!null 
+    - 1
+    - 48
+    - !!null 
+    - !!null 
+    - 1
     - 93
     - !!null 
     - !!null 
@@ -306,6 +308,38 @@
     - 1
     - 4
     - 4
+    - !!null 
+    - !!null 
+    - 1
+    - 3
+    - 3
+    - !!null 
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - 9
+    - !!null 
+    - !!null 
+    - 1
+    - !!null 
+    - !!null 
+    - 3
+    - !!null 
+    - !!null 
+    - 1
+    - 2
+    - !!null 
+    - !!null 
+    - 1
+    - 1
+    - 2
+    - 2
+    - 2
+    - 2
+    - 2
+    - 2
+    - !!null 
     - !!null 
     - !!null 
     - !!null 
@@ -488,6 +522,7 @@
     - 1
     - 48
     - 1152
+    - 1152
     - !!null 
     - 48
     - 48
@@ -532,7 +567,6 @@
     - !!null 
     - !!null 
     - !!null 
-    - !!null 
     - 1
     - 48
     - 48
@@ -554,7 +588,7 @@
     - !!null 
     - !!null 
     - !!null 
-  :created_at: 2011-08-28 00:42:06.169224465 -04:00
+  :created_at: 2011-08-28 19:11:53.156885854 -04:00
 RSpec:
   :original_result:
     /home/enrique/rubys/code/brock/lib/brock/playtime_calculator.rb:
@@ -572,10 +606,42 @@ RSpec:
     - 4
     - !!null 
     - !!null 
+    - 1
+    - 5
+    - 5
+    - !!null 
+    - !!null 
+    - 1
+    - !!null 
+    - 1
+    - 15
+    - !!null 
+    - !!null 
+    - 1
+    - !!null 
+    - !!null 
+    - 5
+    - !!null 
+    - !!null 
+    - 1
+    - 2
+    - !!null 
+    - !!null 
+    - 1
+    - 1
+    - 4
+    - 4
+    - 4
+    - 4
+    - 4
+    - 4
     - !!null 
     - !!null 
     - !!null 
-  :created_at: 2011-08-28 00:42:04.231019886 -04:00
+    - !!null 
+    - !!null 
+    - !!null 
+  :created_at: 2011-08-28 19:15:52.263911816 -04:00
 brock_specs:
   :original_result:
     /home/enrique/rubys/code/brock/lib/brock/stats_calculator.rb:

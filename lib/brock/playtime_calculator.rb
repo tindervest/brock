@@ -25,23 +25,33 @@ class Brock
 
       def play_factor_calculators
         @play_factor_calculator ||=
-          { 20..20 => play_factor_20,
-            21..24 => play_factor_21_24 }
+          { 20..20 => method(:play_factor_20),
+            21..24 => method(:play_factor_21_24),
+            25..30 => method(:play_factor_25_30) }
       end
       
-      def play_factor_20
-        ->(age, stats) { 0 }
+      def play_factor_20(age, stats)
+        0
       end
 
-      def play_factor_21_24
-        ->(age, stats) do
-          playtime_current = stats[age][:playtime]
-          playtime_last = stats[age -1][:playtime]
-          ok_regular = playtime_current[:regular] ? 1.0 : 0.0
-          ok_bench = playtime_current[:bench] ? 1.0 : 0.0
-          ok_prior_bench = playtime_last[:bench] ? 1.0 : 0.0 
-          ((ok_regular + ok_bench + ok_prior_bench) / 3).round(3)
-        end
+      def play_factor_21_24(age, stats)
+        ok_regular = yearly_play_categorization(age, stats)
+        ok_bench = yearly_play_categorization(age, stats, false)
+        ok_prior_bench = yearly_play_categorization(age-1, stats, false) 
+        ((ok_regular + ok_bench + ok_prior_bench) / 3).round(3)
+      end
+
+      def play_factor_25_30(age, stats)
+        ok_regular = yearly_play_categorization(age, stats)
+        ok_bench = yearly_play_categorization(age, stats, false)
+        ok_prior_regular = yearly_play_categorization(age-1, stats)
+        ok_prior_bench = yearly_play_categorization(age-1, stats, false) 
+        ((ok_regular + ok_bench + ok_prior_regular + ok_prior_bench) / 4).round(3)
+      end
+
+      def yearly_play_categorization(age, stats, regular = true)
+        value = stats[age][:playtime]
+        return regular ? (value[:regular] ? 1.0 : 0.0) : (value[:bench] ? 1.0 : 0.0) 
       end
     end
 

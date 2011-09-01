@@ -109,6 +109,196 @@ describe "PlaytimeCalculator" do
         Brock::PlaytimeCalculator.play_factor(25, stats).should eq(1.00)
       end
     end
-  end
 
+    describe "ages above 30" do
+      def validate_play_factor_calculation(age, expected)
+        stats = { 29 => { :playtime => { :regular => two_years_prior } }, 30 => { :playtime => { :regular => prior_regular, :bench => prior_bench } },
+          31 => { :playtime => { :regular => current_regular, :bench => current_bench } }}
+        Brock::PlaytimeCalculator.play_factor(age, stats).should eq(expected)
+      end
+
+      describe "2 years prior regular is true" do
+        let(:two_years_prior) { true }
+
+        describe "current regular is true" do
+          let(:current_regular) { true }
+          let(:current_bench) { true }
+
+          describe "prior regular is true" do
+            let(:prior_regular) { true }
+            let(:prior_bench) { true }
+
+            it "returns 1.00" do
+              validate_play_factor_calculation(31, 1.00)
+            end
+          end
+
+          describe "prior regular is false" do
+            let(:prior_regular) { false }
+            describe "prior bench is true" do
+              let(:prior_bench) { true }
+              it "returns 0.80" do
+                validate_play_factor_calculation(31, 0.80) 
+              end
+            end
+            describe "prior bench is false" do
+              let(:prior_bench) { false }
+              it "returns 0.60" do
+                validate_play_factor_calculation(31, 0.60)
+              end
+            end
+          end
+
+        end
+
+        describe "current regular is false" do
+          let(:current_regular) { false }
+          describe "current bench is true" do
+            let(:current_bench) { true }
+            describe "prior regular is true" do
+              let(:prior_regular) { true }
+              let(:prior_bench) { true }
+              it "returns 0.80" do
+                validate_play_factor_calculation(31, 0.80)
+              end
+            end
+            describe "prior regular is false" do
+              let(:prior_regular) { false }
+              describe "prior bench is true" do
+                let(:prior_bench) { true }
+                it "returns 0.60" do
+                  validate_play_factor_calculation(31, 0.60)
+                end
+
+              end
+              describe "prior bench is false" do
+                let(:prior_bench) { false }
+                it "returns 0.40" do
+                  validate_play_factor_calculation(31, 0.40)
+                end
+              end
+            end
+          end
+
+          describe "current bench is false" do
+            let(:current_bench) { false }
+            describe "prior regular is true" do
+              let(:prior_regular) { true }
+              let(:prior_bench) { true }
+              it "returns 0.60" do
+                validate_play_factor_calculation(31, 0.60)
+              end
+            end
+            describe "prior regular is false" do
+              let(:prior_regular) { false }
+              describe "prior bench is true" do
+                let(:prior_bench) { true }
+                it "returns 0.40" do
+                  validate_play_factor_calculation(31, 0.40)
+                end
+
+              end
+              describe "prior bench is false" do
+                let(:prior_bench) { false }
+                it "returns 0.20" do
+                  validate_play_factor_calculation(31, 0.20)
+                end
+              end
+            end
+          end
+        end
+      end
+      describe "2 years prior regular is false" do
+        let(:two_years_prior) { false }
+
+        describe "current regular is true" do
+          let(:current_regular) { true }
+          let(:current_bench) { true }
+
+          describe "prior regular is true" do
+            let(:prior_regular) { true }
+            let(:prior_bench) { true }
+
+            it "returns 0.80" do
+              validate_play_factor_calculation(31, 0.80)
+            end
+          end
+
+          describe "prior regular is false" do
+            let(:prior_regular) { false }
+            describe "prior bench is true" do
+              let(:prior_bench) { true }
+              it "returns 0.60" do
+                validate_play_factor_calculation(31, 0.60) 
+              end
+            end
+            describe "prior bench is false" do
+              let(:prior_bench) { false }
+              it "returns 0.40" do
+                validate_play_factor_calculation(31, 0.40)
+              end
+            end
+          end
+
+        end
+
+        describe "current regular is false" do
+          let(:current_regular) { false }
+          describe "current bench is true" do
+            let(:current_bench) { true }
+            describe "prior regular is true" do
+              let(:prior_regular) { true }
+              let(:prior_bench) { true }
+              it "returns 0.60" do
+                validate_play_factor_calculation(31, 0.60)
+              end
+            end
+            describe "prior regular is false" do
+              let(:prior_regular) { false }
+              describe "prior bench is true" do
+                let(:prior_bench) { true }
+                it "returns 0.40" do
+                  validate_play_factor_calculation(31, 0.40)
+                end
+
+              end
+              describe "prior bench is false" do
+                let(:prior_bench) { false }
+                it "returns 0.20" do
+                  validate_play_factor_calculation(31, 0.20)
+                end
+              end
+            end
+          end
+
+          describe "current bench is false" do
+            let(:current_bench) { false }
+            describe "prior regular is true" do
+              let(:prior_regular) { true }
+              let(:prior_bench) { true }
+              it "returns 0.40" do
+                validate_play_factor_calculation(31, 0.40)
+              end
+            end
+            describe "prior regular is false" do
+              let(:prior_regular) { false }
+              describe "prior bench is true" do
+                let(:prior_bench) { true }
+                it "returns 0.20" do
+                  validate_play_factor_calculation(31, 0.20)
+                end
+
+              end
+              describe "prior bench is false" do
+                let(:prior_bench) { false }
+                it "returns 0.00" do
+                  validate_play_factor_calculation(31, 0.00)
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+  end
 end

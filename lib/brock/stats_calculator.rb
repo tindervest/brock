@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/validator')
 require File.expand_path(File.dirname(__FILE__) + '/prorator')
 require File.expand_path(File.dirname(__FILE__) + '/error')
+require File.expand_path(File.dirname(__FILE__) + '/playtime_calculator')
 
 class Brock
 
@@ -8,6 +9,7 @@ class Brock
 
     include Validator
     include Prorator
+    include PlaytimeCalculator
 
     class << self
       def total_bases(stats)
@@ -94,5 +96,4 @@ class Brock
       end
     end
   end
-
 end

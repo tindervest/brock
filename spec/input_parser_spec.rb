@@ -6,7 +6,7 @@ require 'fakefs/spec_helpers'
 
 describe Brock::InputParser do
 
-  describe "reading file input" do
+  describe "#read_data" do
     include FakeFS::SpecHelpers
 
     let(:path) { "/path/test.txt" }
@@ -228,6 +228,14 @@ describe Brock::InputParser do
 
         it "sets sustenance level" do
           year_stats[:sustenance].should eq(4.50)
+        end
+
+        it "sets regular playing time qualification" do
+          year_stats[:ok_regular?].should be_false
+        end
+
+        it "sets bench playing time qualification" do
+          year_stats[:ok_bench?].should be_false
         end
       end
     end

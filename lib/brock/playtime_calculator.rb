@@ -3,6 +3,14 @@ class Brock
   module PlaytimeCalculator
 
     class << self
+      def included(klass)
+        klass.send :extend, ClassMethods
+      end
+
+    end
+
+    module ClassMethods
+
       def ok_regular?(stats)
         stats[:rc25] > stats[:sustenance]
       end
@@ -64,6 +72,5 @@ class Brock
         return regular ? (value[:regular] ? 1.0 : 0.0) : (value[:bench] ? 1.0 : 0.0) 
       end
     end
-
   end
 end

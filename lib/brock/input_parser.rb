@@ -6,7 +6,6 @@ class Brock
 
   module InputParser
 
-    include StatsCalculator
     include Validator
 
     class << self
@@ -59,7 +58,7 @@ class Brock
 
         age = set_up_age_entry(index)
         populate_hash_from_extracted_values(stats[age], stat_line_attributes, stat_values) 
-        calculate_stats(stats[age], age)
+        calculate_stats(age, stats[age])
         update_totals(stats[age])
       end
 
@@ -73,10 +72,12 @@ class Brock
         return age
       end
 
-      def calculate_stats(stats, age)
+      def calculate_stats(age, stats)
         stats[:proj_games] = StatsCalculator.prorate_games_played(stats[:year], stats[:games])
         stats[:rc25] = StatsCalculator.runs_created_25(stats)
         stats[:sustenance] = StatsCalculator.sustenance_level(age, configuration[:sustenance])
+        stats[:ok_regular?] = StatsCalculator.ok_regular?(stats)
+        stats[:ok_bench?] = StatsCalculator.ok_bench?(age, stats)
       end
 
       def calculate_stats_line_delta(index)

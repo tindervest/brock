@@ -1,16 +1,16 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require 'brock/playtime_calculator'
+require 'brock/stats_calculator'
 
 describe "PlaytimeCalculator" do
   describe "#ok_regular?" do
     it "returns true if runs created per 25 outs is greater than sustenance" do
       stats = { :rc25 => 5.67, :sustenance => 5.66 }
-      Brock::PlaytimeCalculator.ok_regular?(stats).should be_true
+      Brock::StatsCalculator.ok_regular?(stats).should be_true
     end
 
     it "returns false if runs created per 25 outs is less than or equal to sustenance" do
       stats = { :rc25 => 5.66, :sustenance => 5.66 }
-      Brock::PlaytimeCalculator.ok_regular?(stats).should_not be_true
+      Brock::StatsCalculator.ok_regular?(stats).should_not be_true
     end
   end
 
@@ -19,12 +19,12 @@ describe "PlaytimeCalculator" do
       let(:age) { 33 }
       it "returns true when runs created per 25 outs is greater than sustenance - 1" do
         stats = { :rc25 => 4.67, :sustenance => 5.66 }
-        Brock::PlaytimeCalculator.ok_bench?(age, stats).should be_true
+        Brock::StatsCalculator.ok_bench?(age, stats).should be_true
       end
 
       it "returns false when runs created per 25 outs is less than or equal to sustenance - 1" do
         stats = { :rc25 => 4.66, :sustenance => 5.66 }
-        Brock::PlaytimeCalculator.ok_bench?(age, stats).should_not be_true
+        Brock::StatsCalculator.ok_bench?(age, stats).should_not be_true
       end
     end
 
@@ -32,15 +32,14 @@ describe "PlaytimeCalculator" do
       let(:age) { 34 }
       it "returns true when runs created per 25 outs is greater than sustenance - 0.6" do
         stats = { :rc25 => 5.07, :sustenance => 5.66 }
-        Brock::PlaytimeCalculator.ok_bench?(age, stats).should be_true
+        Brock::StatsCalculator.ok_bench?(age, stats).should be_true
       end
 
       it "returns false when runs created per 25 outs is less than or equal to sustenance - 0.6" do
         stats = { :rc25 => 5.06, :sustenance => 5.66 }
-        Brock::PlaytimeCalculator.ok_bench?(age, stats).should_not be_true
+        Brock::StatsCalculator.ok_bench?(age, stats).should_not be_true
       end
     end
-
   end
 
   describe "#play_factor" do
@@ -48,7 +47,7 @@ describe "PlaytimeCalculator" do
 
       it "returns 0" do
         stats = { }
-        Brock::PlaytimeCalculator.play_factor(20, stats).should eq(0)
+        Brock::StatsCalculator.play_factor(20, stats).should eq(0)
       end
     end
 
@@ -56,7 +55,7 @@ describe "PlaytimeCalculator" do
 
       def validate_play_factor_for_ages_21_through_24(expected)
         stats = { 20 => { :playtime => { :bench => prior_bench} }, 21 => { :playtime => { :regular => current_regular, :bench => current_bench} } }
-        Brock::PlaytimeCalculator.play_factor(21, stats).should eq(expected)
+        Brock::StatsCalculator.play_factor(21, stats).should eq(expected)
       end
 
       describe "current regular is true" do
@@ -125,7 +124,7 @@ describe "PlaytimeCalculator" do
 
       def validate_play_factor_for_ages_25_through_30(expected)
         stats = { 24 => { :playtime => { :regular => prior_regular, :bench => prior_bench } }, 25 => { :playtime => { :regular => current_regular, :bench => current_bench } } }
-        Brock::PlaytimeCalculator.play_factor(25, stats).should eq(expected)
+        Brock::StatsCalculator.play_factor(25, stats).should eq(expected)
       end
 
       describe "current regular is true" do
@@ -238,7 +237,7 @@ describe "PlaytimeCalculator" do
       def validate_play_factor_for_over_30(expected)
         stats = { 29 => { :playtime => { :regular => two_years_prior } }, 30 => { :playtime => { :regular => prior_regular, :bench => prior_bench } },
           31 => { :playtime => { :regular => current_regular, :bench => current_bench } }}
-        Brock::PlaytimeCalculator.play_factor(31, stats).should eq(expected)
+        Brock::StatsCalculator.play_factor(31, stats).should eq(expected)
       end
 
       describe "2 years prior regular is true" do

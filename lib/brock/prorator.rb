@@ -12,10 +12,11 @@ class Brock
         season_length = strike_seasons[season] 
         season_length = season > 1960 ? 162 : 154 unless season_length
         prorated_games = games  * (162.0 / season_length)
-        return prorated_games.round(1).to_i
+        return prorated_games.round(0)
       end
 
-      :private
+      private
+
       def strike_seasons
         @strike_seasons ||= initialize_strike_seasons
       end

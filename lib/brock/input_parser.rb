@@ -1,10 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/error')
 require File.expand_path(File.dirname(__FILE__) + '/validator')
+require File.expand_path(File.dirname(__FILE__) + '/stats_calculator')
 
 class Brock
 
   module InputParser
 
+    include StatsCalculator
     include Validator
 
     class << self
@@ -31,7 +33,7 @@ class Brock
         end
       end
 
-      :private
+      private
 
       def initialize_stats(stats_hash = {})
         (19..42).each do |age|
@@ -57,6 +59,7 @@ class Brock
 
         age = set_up_age_entry(index)
         populate_hash_from_extracted_values(stats[age], stat_line_attributes, stat_values) 
+        calculate_stats(stats[age], age)
         update_totals(stats[age])
       end
 
@@ -68,6 +71,12 @@ class Brock
         stats[age][:year] = year 
 
         return age
+      end
+
+      def calculate_stats(stats, age)
+        stats[:proj_games] = StatsCalculator.prorate_games_played(stats[:year], stats[:games])
+        stats[:rc25] = StatsCalculator.runs_created_25(stats)
+        stats[:sustenance] = StatsCalculator.sustenance_level(age, configuration[:sustenance])
       end
 
       def calculate_stats_line_delta(index)

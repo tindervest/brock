@@ -50,7 +50,7 @@ class Brock
         return result.round(3)
       end
 
-      :private
+      private
 
       def sustenance_adjustment(age)
         sustenance_values.select { |k, v| k.include?(age) }.values.pop

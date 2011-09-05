@@ -218,6 +218,17 @@ describe Brock::InputParser do
           year_stats[:iw].should eq(17)
         end
 
+        it "calculates prorated games" do
+          year_stats[:proj_games].should eq(122)
+        end
+
+        it "sets runs created per 25 outs" do
+          year_stats[:rc25].should eq(3.06)
+        end
+
+        it "sets sustenance level" do
+          year_stats[:sustenance].should eq(4.50)
+        end
       end
     end
 

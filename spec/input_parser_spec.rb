@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require 'brock/input_parser'
+require 'brock/base'
 require 'fakefs'
 require 'fakefs/safe'
 require 'fakefs/spec_helpers'
@@ -9,7 +9,7 @@ describe Brock::InputParser do
   describe "#read_data" do
     include FakeFS::SpecHelpers
 
-    let(:path) { "/path/test.txt" }
+    let(:path) { "test.txt" }
 
     describe "reading properly formatted file" do
 
@@ -21,34 +21,34 @@ describe Brock::InputParser do
           f << "122 545 87 122 12 0 13 88 5 4 63 89 14 8 1 2 17\n" #age 27, year 1999
         end
         
-        Brock::InputParser.read_data(path)
+        Brock.read_data(path)
       end
 
       it "contains stats hash property" do
-        Brock::InputParser.stats.should_not be_nil
+        Brock.stats.should_not be_nil
       end
 
       it "contains entry for each age between 19 and 42 inclusively" do
         (19..42).each do |age|
-          Brock::InputParser.stats[age].should_not be_nil
+          Brock.stats[age].should_not be_nil
         end
       end
 
       it "contains entry for cummulative stats" do
-        Brock::InputParser.stats[:totals].should_not be_nil
+        Brock.stats[:totals].should_not be_nil
       end
 
       it "contains configuration hash in stats" do
-        Brock::InputParser.configuration.should_not be_nil
+        Brock.configuration.should_not be_nil
       end
 
       it "resets stats hash when reading data" do
-        Brock::InputParser.read_data(path)
-        Brock::InputParser.stats[:totals][:games].should eq(284)
+        Brock.read_data(path)
+        Brock.stats[:totals][:games].should eq(284)
       end
 
       describe "reading entire file" do
-        let(:total_stats) { Brock::InputParser.stats[:totals] }
+        let(:total_stats) { Brock.stats[:totals] }
         
         it "accumulates games" do
           total_stats[:games].should eq(284)
@@ -122,29 +122,29 @@ describe Brock::InputParser do
       describe "reading specification line" do
 
         it "reads year of cummulative stats" do
-          Brock::InputParser.configuration[:totals_year].should eq(2000)
+          Brock.configuration[:totals_year].should eq(2000)
         end
 
         it "reads age at cummulative stats year" do
-          Brock::InputParser.configuration[:totals_age].should eq(28)
+          Brock.configuration[:totals_age].should eq(28)
         end
 
         it "reads starting age for yearly stats" do
-          Brock::InputParser.configuration[:stats_start_age].should eq(26)
+          Brock.configuration[:stats_start_age].should eq(26)
         end
 
         it "reads current age" do
-          Brock::InputParser.configuration[:current_age].should eq(29)
+          Brock.configuration[:current_age].should eq(29)
         end
 
         it "reads sustenance level" do
-          Brock::InputParser.configuration[:sustenance].should eq(4.67)
+          Brock.configuration[:sustenance].should eq(4.67)
         end
 
       end
 
       describe "reading stat line" do
-        let(:year_stats) { Brock::InputParser.stats[27] }
+        let(:year_stats) { Brock.stats[27] }
 
         it "calculates corresponding year" do
           year_stats[:year].should eq(1999)
@@ -251,7 +251,7 @@ describe Brock::InputParser do
         end
       
         it "raises error when configuration line is not in correct format " do
-          lambda { Brock::InputParser.read_data(path) }.should raise_error(Brock::MalformattedArgumentError, "Configuration line formatted incorrectly: 2XKXKX KKK")
+          lambda { Brock.read_data(path) }.should raise_error(Brock::MalformattedArgumentError, "Configuration line formatted incorrectly: 2XKXKX KKK")
         end
       end
 
@@ -264,7 +264,7 @@ describe Brock::InputParser do
         end
 
         it "raises error when stat line does not contain 17 numeric values separated by spaces" do
-          lambda { Brock::InputParser.read_data(path) }.should raise_error(Brock::MalformattedArgumentError, "Stat line formatted incorrectly: 600 120 180 20 3 15 115 98\n" )
+          lambda { Brock.read_data(path) }.should raise_error(Brock::MalformattedArgumentError, "Stat line formatted incorrectly: 600 120 180 20 3 15 115 98\n" )
         end
       end
     end

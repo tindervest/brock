@@ -1,17 +1,16 @@
 require File.expand_path(File.dirname(__FILE__) + '/error')
-require File.expand_path(File.dirname(__FILE__) + '/validator')
-require File.expand_path(File.dirname(__FILE__) + '/stats_calculator')
 
 class Brock
 
   module InputParser
 
-    include Validator
-
     class << self
       def included(klass)
         klass.send :extend, ClassMethods
       end
+    end
+
+    module ClassMethods
 
       def stats
         @stats ||= {}
@@ -104,11 +103,6 @@ class Brock
           stats[:totals][stat] += yearly_stats[stat] 
         end
       end
-
-    end
-
-    module ClassMethods
     end
   end
-
 end

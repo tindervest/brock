@@ -34,7 +34,7 @@ class Brock
       private
 
       def initialize_stats(stats_hash = {})
-        (19..42).each do |age|
+        (20..41).each do |age|
           stats_hash[age] = {}
           stats_hash[age][:playtime] = {}
         end

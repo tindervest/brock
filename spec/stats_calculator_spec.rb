@@ -88,33 +88,28 @@ describe "Brock::StatsCalculator" do
 
   describe "#sustenance_level" do
 
-    describe "calculation for ages 20 and 21" do
-
-      it "returns value for age 20" do
-        validate_sustenance_calculation(20, 5.00, 4.900)
-      end
-
+    describe "calculation for age 21" do
       it "returns value for age 21" do
-        validate_sustenance_calculation(21, 5.00, 4.800)
+        validate_sustenance_calculation(21, 5.00, 4.900)
       end
     end
 
     describe "calculation for ages 22 through 25" do
 
       it "returns value for age 22" do
-        validate_sustenance_calculation(22, 5.00, 4.800)
+        validate_sustenance_calculation(22, 5.00, 4.900)
       end 
 
       it "returns value for age 23" do
-        validate_sustenance_calculation(23, 5.00, 4.800)
+        validate_sustenance_calculation(23, 5.00, 4.900)
       end
 
       it "returns value for age 24" do
-        validate_sustenance_calculation(24, 5.00, 4.800)
+        validate_sustenance_calculation(24, 5.00, 4.900)
       end
 
       it "returns value for age 25" do
-        validate_sustenance_calculation(25, 5.00, 4.800)
+        validate_sustenance_calculation(25, 5.00, 4.900)
       end
 
     end
@@ -122,84 +117,84 @@ describe "Brock::StatsCalculator" do
     describe "calculation for ages 26 through 27" do
 
       it "returns value for age 26" do
-        validate_sustenance_calculation(26, 5.00, 4.815)
+        validate_sustenance_calculation(26, 5.00, 4.915)
       end
 
       it "returns value for age 27" do
-        validate_sustenance_calculation(27, 5.00, 4.830)
+        validate_sustenance_calculation(27, 5.00, 4.930)
       end
     end
 
     describe "calculation for ages 28 through 30" do
       it "returns value for age 28" do
-        validate_sustenance_calculation(28, 5.00, 4.865)
+        validate_sustenance_calculation(28, 5.00, 4.965)
       end
 
       it "returns value for age 29" do
-        validate_sustenance_calculation(29, 5.00, 4.900)
+        validate_sustenance_calculation(29, 5.00, 5.000)
       end
 
       it "returns value for age 30" do
-        validate_sustenance_calculation(30, 5.00, 4.935)
+        validate_sustenance_calculation(30, 5.00, 5.035)
       end
     end
 
     describe "calculation for age 31" do
       it "returns correct value" do
-        validate_sustenance_calculation(31, 5.00, 4.980)
+        validate_sustenance_calculation(31, 5.00, 5.080)
       end
     end
 
     describe "calculation for age 32" do
       it "returns correct value" do
-        validate_sustenance_calculation(32, 5.00, 5.035)
+        validate_sustenance_calculation(32, 5.00, 5.135)
       end
     end
     
     describe "calculation for age 33" do
       it "returns correct value" do
-        validate_sustenance_calculation(33, 5.00, 5.105)
+        validate_sustenance_calculation(33, 5.00, 5.205)
       end
     end
 
     describe "calculation for ages 34 through 36" do
 
       it "returns correct value for age 34" do
-        validate_sustenance_calculation(34, 5.00, 5.180)
+        validate_sustenance_calculation(34, 5.00, 5.280)
       end
 
       it "returns correct value for age 35" do
-        validate_sustenance_calculation(35, 5.00, 5.255)
+        validate_sustenance_calculation(35, 5.00, 5.355)
       end
 
       it "returns correct value for age 36" do
-        validate_sustenance_calculation(36, 5.00, 5.330) 
+        validate_sustenance_calculation(36, 5.00, 5.430) 
       end
     end
 
     describe "calculation for age 37" do
       it "returns correct value" do
-        validate_sustenance_calculation(37, 5.00, 5.380)
+        validate_sustenance_calculation(37, 5.00, 5.480)
       end
     end
 
     describe "calculation for age 38" do
       it "returns correct value" do
-        validate_sustenance_calculation(38, 5.00, 5.455)
+        validate_sustenance_calculation(38, 5.00, 5.555)
       end
     end
 
     describe "calculation for ages 39 through 41" do
       it "returns correct value for age 39" do
-        validate_sustenance_calculation(39, 5.00, 5.505)
+        validate_sustenance_calculation(39, 5.00, 5.605)
       end
 
       it "returns correct value for age 40" do
-        validate_sustenance_calculation(40, 5.00, 5.555)
+        validate_sustenance_calculation(40, 5.00, 5.655)
       end
 
       it "returns correct value for age 41" do
-        validate_sustenance_calculation(41, 5.00, 5.605)
+        validate_sustenance_calculation(41, 5.00, 5.705)
       end
     end
 

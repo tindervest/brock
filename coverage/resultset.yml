@@ -722,24 +722,24 @@ RSpec:
     - !!null 
     - !!null 
     - 1
-    - 124
-    - 124
-    - 124
-    - 1018
-    - 1018
+    - 123
+    - 123
+    - 123
+    - 894
+    - 894
     - !!null 
     - !!null 
-    - 124
-    - !!null 
-    - !!null 
-    - 1
-    - !!null 
-    - 1
-    - 12216
+    - 123
     - !!null 
     - !!null 
     - 1
-    - 1018
+    - !!null 
+    - 1
+    - 10728
+    - !!null 
+    - !!null 
+    - 1
+    - 894
     - !!null 
     - !!null 
     - 1
@@ -920,7 +920,7 @@ RSpec:
     - 1
     - !!null 
     - 1
-    - 2984
+    - 2982
     - !!null 
     - !!null 
     - 1
@@ -942,8 +942,8 @@ RSpec:
     - !!null 
     - 1
     - 53
-    - 1272
-    - 1272
+    - 1166
+    - 1166
     - !!null 
     - 53
     - 53
@@ -1013,7 +1013,7 @@ RSpec:
     - !!null 
     - !!null 
     - !!null 
-  :created_at: 2011-09-05 21:52:18.049183309 -04:00
+  :created_at: 2011-09-06 21:58:41.299369228 -04:00
 brock_specs:
   :original_result:
     /home/enrique/rubys/code/brock/lib/brock/stats_calculator.rb:

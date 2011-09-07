@@ -28,8 +28,8 @@ describe Brock::InputParser do
         Brock.stats.should_not be_nil
       end
 
-      it "contains entry for each age between 19 and 42 inclusively" do
-        (19..42).each do |age|
+      it "contains entry for each age between 20 and 41 inclusively" do
+        (20..41).each do |age|
           Brock.stats[age].should_not be_nil
         end
       end
@@ -227,7 +227,7 @@ describe Brock::InputParser do
         end
 
         it "sets sustenance level" do
-          year_stats[:sustenance].should eq(4.50)
+          year_stats[:sustenance].should eq(4.60)
         end
 
         it "sets regular playing time qualification" do

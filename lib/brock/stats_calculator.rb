@@ -42,7 +42,7 @@ class Brock
       end
 
       def sustenance_level(age, initial_value)
-        span = Range.new(20, age)
+        span = Range.new(21, age)
         result = initial_value
         span.each do |age| 
           adj = sustenance_adjustment(age)
@@ -80,7 +80,7 @@ class Brock
 
       def initialize_sustenance_adjustments
         values = {}
-        values[20..21] = -0.10
+        values[21..21] = -0.10
         values[22..25] = 0.0
         values[26..27] = 0.015
         values[28..30] = 0.035
@@ -90,7 +90,7 @@ class Brock
         values[34..36] = 0.075
         values[37..37] = 0.050
         values[38..38] = 0.075
-        values[39..42] = 0.050
+        values[39..41] = 0.050
 
         return values
       end

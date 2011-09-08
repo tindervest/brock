@@ -231,11 +231,11 @@ describe Brock::InputParser do
         end
 
         it "sets regular playing time qualification" do
-          year_stats[:ok_regular?].should be_false
+          year_stats[:playtime][:regular].should eq(false)
         end
 
         it "sets bench playing time qualification" do
-          year_stats[:ok_bench?].should be_false
+          year_stats[:playtime][:bench].should eq(false)
         end
       end
     end

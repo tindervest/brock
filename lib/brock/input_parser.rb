@@ -75,8 +75,8 @@ class Brock
         stats[:proj_games] = StatsCalculator.prorate_games_played(stats[:year], stats[:games])
         stats[:rc25] = StatsCalculator.runs_created_25(stats)
         stats[:sustenance] = StatsCalculator.sustenance_level(age, configuration[:sustenance])
-        stats[:ok_regular?] = StatsCalculator.ok_regular?(stats)
-        stats[:ok_bench?] = StatsCalculator.ok_bench?(age, stats)
+        stats[:playtime][:regular] = StatsCalculator.ok_regular?(stats)
+        stats[:playtime][:bench] = StatsCalculator.ok_bench?(age, stats)
       end
 
       def calculate_stats_line_delta(index)

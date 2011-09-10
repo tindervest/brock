@@ -6,4 +6,7 @@ class Brock
 
   class InvalidStatsHashError < StandardError
   end
+
+  class InvalidPlayerAge < StandardError
+  end
 end

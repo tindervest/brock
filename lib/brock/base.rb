@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/input_parser')
 require File.expand_path(File.dirname(__FILE__) + '/validator')
 require File.expand_path(File.dirname(__FILE__) + '/stats_calculator')
+require File.expand_path(File.dirname(__FILE__) + '/projector')
 
 class Brock
   include InputParser
@@ -10,7 +11,9 @@ class Brock
     
     def project(path)
       read_data(path)
-      calculate_play_factor(configuration[:current_age])
+      age = configuration[:current_age]
+      calculate_play_factor(age)
+      Projector.project_career(age, stats)
     end
 
     private 

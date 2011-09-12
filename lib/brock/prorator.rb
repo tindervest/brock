@@ -8,6 +8,7 @@ class Brock
     end
 
     module ClassMethods
+
       def prorate_games_played(season, games)
         season_length = strike_seasons[season] 
         season_length = season > 1960 ? 162 : 154 unless season_length

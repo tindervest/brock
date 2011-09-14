@@ -46,7 +46,7 @@ class Brock
       end
 
       def play_factor_calculator(age)
-        play_factor_calculators.select { |k,v| k.include?(age) }.values.pop
+        play_factor_calculators.select { |k, v| k.include?(age) }.values.pop
       end
 
       def play_factor_calculators

@@ -69,7 +69,7 @@ describe Brock::Projector do
       end
     end
 
-    describe "for ages 27 through 41, excluding 29 and 33" do
+    describe "for ages 27 through 33, excluding 29" do
       let(:stats) { { 25 => { :proj_games => 144, :playtime => { :play_factor => 1.00, :regular => true } },
                       26 => { :proj_games => 132, :playtime => { :play_factor => 0.800, :regular => true } },
                       27 => { } } }
@@ -85,6 +85,16 @@ describe Brock::Projector do
                       29 => { } } }
       it "returns the correct value" do
         Brock::Projector.project_games(29, stats).should eq(119)
+      end
+    end
+
+    describe "for ages greater than 33" do
+      let(:stats) { { 32 => { :proj_games => 144, :playtime => { :play_factor => 1.00, :regular => true } },
+                      33 => { :proj_games => 132, :playtime => { :play_factor => 0.800, :regular => true } },
+                      34 => { } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_games(34, stats).should eq(114)
       end
     end
   end

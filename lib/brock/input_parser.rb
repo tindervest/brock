@@ -27,12 +27,21 @@ class Brock
           lines = f.readlines
           lines.each_index do |index|
             extract_configuration_data(lines[index]) unless index > 0
-            extract_stat_line(lines[index], index) unless index == 0
+            populate_year_for_entries if index == 1
+            year_entry = extract_stat_line(lines[index], index) unless index == 0
           end
         end
       end
 
       private
+
+      def populate_year_for_entries
+        age = configuration[:stats_start_age] 
+        year = year_from_index(1)
+        stats.each do |k, v|
+          v[:year] = year + k - age if k.is_a?(Numeric)
+        end
+      end
 
       def initialize_stats(stats_hash = {})
         (20..41).each do |age|
@@ -56,20 +65,20 @@ class Brock
 
         stat_values = line.scan(/(\d+)/)
 
-        age = set_up_age_entry(index)
+        age = age_from_index(index)
         populate_hash_from_extracted_values(stats[age], stat_line_attributes, stat_values) 
         StatsService.initialize_stats_entry(age, stats[age], configuration[:sustenance])
         update_totals(stats[age])
       end
 
-      def set_up_age_entry(index)
+      def age_from_index(index)
         delta = calculate_stats_line_delta(index)
         age = configuration[:totals_age] + delta
-        year = configuration[:totals_year] + delta
-        stats[age] ||= {}
-        stats[age][:year] = year 
+      end
 
-        return age
+      def year_from_index(index)
+        delta = calculate_stats_line_delta(index)
+        year = configuration[:totals_year] + delta
       end
 
       def calculate_stats_line_delta(index)

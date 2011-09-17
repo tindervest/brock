@@ -36,12 +36,12 @@ describe "Brock" do
         end
 
         it "sets the play factor for age 28" do
-          pending("year set on all hash entries and play factor calculated on projected entry")
+          pending("play factor calculated on projected entry")
           #Brock.stats[28][:playtime][:play_factor].should eq(0.500)
         end
 
         it "sets the play factor for age 29" do
-          pending("year set on all hash entries and play factor calculated on projected entry")
+          pending("play factor calculated on projected entry")
           #Brock.stats[29][:playtime][:play_factor].should eq(1.000)
         end
       end
@@ -61,17 +61,17 @@ describe "Brock" do
         end
 
         it "sets the play factor for age 29" do
-          pending("year set on all hash entries and play factor calculated on projected entry")
+          pending("play factor calculated on projected entry")
           #Brock.stats[29][:playtime][:play_factor].should eq(0.500)
         end
 
         it "sets the play factor for age 30" do
-          pending("year set on all hash entries and play factor calculated on projected entry")
+          pending("play factor calculated on projected entry")
           #Brock.stats[30][:playtime][:play_factor].should eq(0.500)
         end
 
         it "sets the play factor for age 31" do
-          pending("year set on all hash entries and play factor calculated on projected entry")
+          pending("play factor calculated on projected entry")
           #Brock.stats[31][:playtime][:play_factor].should eq(0.800)
         end
       end

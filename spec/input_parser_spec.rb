@@ -34,6 +34,12 @@ describe Brock::InputParser do
         end
       end
 
+      it "populates year for all entries" do
+        (20..41).each do |age|
+          Brock.stats[age][:year].should be > 0
+        end
+      end
+
       it "contains entry for cummulative stats" do
         Brock.stats[:totals].should_not be_nil
       end

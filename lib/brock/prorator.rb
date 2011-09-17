@@ -9,11 +9,16 @@ class Brock
 
     module ClassMethods
 
-      def prorate_games_played(season, games)
+      def prorate_games_to_162(season, games)
         season_length = strike_seasons[season] 
         season_length = season > 1960 ? 162 : 154 unless season_length
         prorated_games = games  * (162.0 / season_length)
-        return prorated_games.round(0)
+        prorated_games.round(0)
+      end
+
+      def prorate_games_to_actual(season, games)
+        return games unless season < 1961
+        (games * 154 / 162).round(0)
       end
 
       private

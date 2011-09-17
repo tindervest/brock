@@ -15,7 +15,7 @@ class Brock
 
     class << self
       def initialize_stats_entry(age, stats, initial_sustenance)
-        stats[:proj_games] = prorate_games_played(stats[:year], stats[:games])
+        stats[:proj_games] = prorate_games_to_162(stats[:year], stats[:games])
         stats[:rc25] = runs_created_25(stats)
         stats[:sustenance] = sustenance_level(age, initial_sustenance)
         stats[:playtime][:regular] = ok_regular?(stats)

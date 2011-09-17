@@ -25,7 +25,7 @@ describe "Brock" do
       end
 
       it "should delegate career projection to projector" do
-        Brock::Projector.should_receive(:project_career).with(29, Brock.stats, 4.67)
+        Brock::Projector.should_receive(:project_career)
         Brock.project(path)
       end
 

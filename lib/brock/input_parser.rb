@@ -38,15 +38,16 @@ class Brock
       def populate_year_for_entries
         age = configuration[:stats_start_age] 
         year = year_from_index(1)
-        stats.each do |k, v|
-          v[:year] = year + k - age if k.is_a?(Numeric)
+        stats[:yearly_stats].each do |k, v|
+          v[:year] = year + k - age 
         end
       end
 
       def initialize_stats(stats_hash = {})
+        yearly_stats = stats_hash[:yearly_stats] = {}
         (20..41).each do |age|
-          stats_hash[age] = {}
-          stats_hash[age][:playtime] = {}
+          yearly_stats[age] = {}
+          yearly_stats[age][:playtime] = {}
         end
         initialize_totals_entry(stats_hash)
         stats_hash
@@ -66,9 +67,11 @@ class Brock
         stat_values = line.scan(/(\d+)/)
 
         age = age_from_index(index)
-        populate_hash_from_extracted_values(stats[age], stat_line_attributes, stat_values) 
-        StatsService.initialize_stats_entry(age, stats[age], configuration[:sustenance])
-        update_totals(stats[age])
+        year_stats = stats[:yearly_stats][age]
+        
+        populate_hash_from_extracted_values(year_stats, stat_line_attributes, stat_values) 
+        StatsService.initialize_stats_entry(age, year_stats, configuration[:sustenance])
+        update_totals(year_stats)
       end
 
       def age_from_index(index)

@@ -11,7 +11,7 @@ class Brock
     def project(path)
       read_data(path)
       age = configuration[:current_age]
-      Projector.project_career(age, stats, configuration[:sustenance])
+      Projector.project_career(age, stats[:yearly_stats], configuration[:sustenance])
     end
 
   end

@@ -5,9 +5,20 @@ class Brock
   module Projector
 
     class << self
+
       def project_career(current_age, stats, initial_sustenance)
         raise Brock::InvalidPlayerAge, "Current Age must be greater than 21" unless current_age > 21
         calculate_initial_play_factor(current_age, stats, initial_sustenance)
+
+        project_age = current_age + 1
+        
+        until project_age > 41 do
+          unless stats[project_age].nil? 
+            games = stats[project_age][:proj_games] = project_games(project_age, stats)
+            stats[project_age][:games] = Brock::StatsService.prorate_games_to_actual(stats[project_age][:year], games)
+          end
+          project_age = project_age + 1
+        end
       end
 
       def project_games(age, stats)

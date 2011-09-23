@@ -137,4 +137,59 @@ describe Brock::Projector do
     end
   end
 
+  describe "#project_at_bats" do
+    describe "for ages 22 through 27" do
+      let (:stats) { { 20 => { :games => 100, :at_bats => 400 },
+                       21 => { :games => 100, :at_bats => 400, :playtime => { :play_factor => 0.800 } },
+                       22 => { :games => 100 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_at_bats(22, stats).should eq(395)
+      end
+
+    end
+
+    describe "ages 28 and 29" do
+      let (:stats) { { 26 => { :games => 100, :at_bats => 400 },
+                       27 => { :games => 100, :at_bats => 400, :playtime => { :play_factor => 0.800 } },
+                       28 => { :games => 100 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_at_bats(28, stats).should eq(392)
+      end
+    end
+
+    describe "age 30" do
+      let (:stats) { { 28 => { :games => 100, :at_bats => 400 },
+                       29 => { :games => 100, :at_bats => 400, :playtime => { :play_factor => 0.800 } },
+                       30 => { :games => 100 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_at_bats(30, stats).should eq(405)
+      end
+    end
+
+    describe "age 31" do
+      let (:stats) { { 29 => { :games => 100, :at_bats => 400 },
+                       30 => { :games => 100, :at_bats => 400, :playtime => { :play_factor => 0.800 } },
+                       31 => { :games => 100 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_at_bats(31, stats).should eq(359)
+      end
+    end
+    
+    describe "ages above 31" do
+      let (:stats) { { 30 => { :games => 100, :at_bats => 400 },
+                       31 => { :games => 100, :at_bats => 400, :playtime => { :play_factor => 0.800 } },
+                       32 => { :games => 100 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_at_bats(32, stats).should eq(362)
+      end
+
+    end
+
+  end
+
 end

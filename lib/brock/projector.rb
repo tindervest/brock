@@ -31,6 +31,11 @@ class Brock
         forecast_at_bats(age, stats, params)
       end
 
+      def project_hits(age, stats)
+        params = hits_parameters.select { |k, v| k.include?(age) }.values.pop
+        forecast_hits(age, stats, params)
+      end
+
       private 
 
       def games_parameters
@@ -41,6 +46,14 @@ class Brock
         @at_bats_parameters ||= initialize_at_bats_parameters
       end
 
+      def ba_deltas
+        @ba_deltas ||= initialize_average_deltas
+      end
+
+      def hits_parameters
+        @hits_parameters ||= initialize_hits_parameters
+      end
+
       def forecast_at_bats(age, stats, params)
         current_games = params[:games_factor] * stats[age][:games] 
         prior_at_bats = stats[age-1][:at_bats] + stats[age-2][:at_bats] + params[:at_bats_modifier]
@@ -48,6 +61,33 @@ class Brock
         play_factor = age < 31 ? 1.0 : (stats[age-1][:playtime][:play_factor] + 1.46) / 2.5
 
         return (current_games * prior_at_bats / prior_games * play_factor).round(0)
+      end
+
+      def forecast_hits(age, stats, params)
+        delta = ba_deltas.select { |k, v| k.include?(age) }.values.pop
+        base_factor = params[:projector].call(age, stats, delta)
+        (stats[age][:at_bats] * base_factor).round(0)
+      end
+
+      def initialize_hits_parameters
+        hits_22 = method(:project_hits_22)
+        hits_under_30 = method(:project_hits_under_30)
+        params = {}
+        params[22..22] = { :projector => hits_22 }
+        params[23..29] = { :projector => hits_under_30 }
+        params
+      end
+
+      def initialize_average_deltas
+        ba_deltas = {}
+        ba_deltas[[22]] = 0.016
+        ba_deltas[[23,25]] = 0.009
+        ba_deltas[[24]] = 0.012
+        ba_deltas[[26]] = 0.006
+        ba_deltas[[27]] = 0.020
+        ba_deltas[[28]] = -0.007
+        ba_deltas[[29]] = -0.013
+        ba_deltas
       end
 
       def initialize_at_bats_parameters
@@ -83,6 +123,18 @@ class Brock
           stats[age][:playtime][:play_factor] = StatsService.play_factor(age, stats)
           prior_years = prior_years - 1
         end
+      end
+
+      def project_hits_22(age, stats, delta)
+        hits_factor = stats[age-2][:hits] + stats[age-1][:hits] + 13.0
+        at_bats_factor = stats[age-2][:at_bats] + stats[age-1][:at_bats] + 50.0
+        hits_factor / at_bats_factor + delta
+      end
+
+      def project_hits_under_30(age, stats, delta)
+        hits_factor = stats[age-3][:hits] + stats[age-2][:hits] + (stats[age-1][:hits] / 2.0) + 13.0
+        at_bats_factor = stats[age-3][:at_bats] + stats[age-2][:at_bats] + (stats[age-1][:at_bats] / 2.0) + 50.0
+        hits_factor / at_bats_factor + delta
       end
 
       def project_games_under_27(age, stats, games, delta)

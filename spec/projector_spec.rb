@@ -271,6 +271,150 @@ describe Brock::Projector do
         Brock::Projector.project_hits(29, stats).should eq(106)
       end
     end
+
+    describe "age 30" do
+      let (:stats) { { 26 => { :games => 100, :at_bats => 400, :hits => 100 }, 
+                       27 => { :games => 100, :at_bats => 400, :hits => 120 },
+                       28 => { :games => 100, :at_bats => 395, :hits => 115 },
+                       29 => { :games => 100, :at_bats => 400, :hits => 110 },
+                       30 => { :games => 100, :at_bats => 400 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_hits(30, stats).should eq(109)
+      end
+    end
+
+    describe "age 31" do
+      let (:stats) { { 27 => { :games => 100, :at_bats => 400, :hits => 100 }, 
+                       28 => { :games => 100, :at_bats => 400, :hits => 120 },
+                       29 => { :games => 100, :at_bats => 395, :hits => 115 },
+                       30 => { :games => 100, :at_bats => 400, :hits => 110 },
+                       31 => { :games => 100, :at_bats => 400 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_hits(31, stats).should eq(108)
+      end
+    end
+
+    describe "age 32" do
+      let (:stats) { { 28 => { :games => 100, :at_bats => 400, :hits => 100 }, 
+                       29 => { :games => 100, :at_bats => 400, :hits => 120 },
+                       30 => { :games => 100, :at_bats => 395, :hits => 115 },
+                       31 => { :games => 100, :at_bats => 400, :hits => 110 },
+                       32 => { :games => 100, :at_bats => 400 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_hits(32, stats).should eq(107)
+      end
+    end
+
+    describe "age 33" do
+      let (:stats) { { 29 => { :games => 100, :at_bats => 400, :hits => 100 }, 
+                       30 => { :games => 100, :at_bats => 400, :hits => 120 },
+                       31 => { :games => 100, :at_bats => 395, :hits => 115 },
+                       32 => { :games => 100, :at_bats => 400, :hits => 110 },
+                       33 => { :games => 100, :at_bats => 400 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_hits(33, stats).should eq(105)
+      end
+    end
+
+    describe "age 34" do
+      let (:stats) { { 30 => { :games => 100, :at_bats => 400, :hits => 100 }, 
+                       31 => { :games => 100, :at_bats => 400, :hits => 120 },
+                       32 => { :games => 100, :at_bats => 395, :hits => 115 },
+                       33 => { :games => 100, :at_bats => 400, :hits => 110 },
+                       34 => { :games => 100, :at_bats => 400 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_hits(34, stats).should eq(107)
+      end
+    end
+
+    describe "age 35" do
+      let (:stats) { { 31 => { :games => 100, :at_bats => 400, :hits => 100 }, 
+                       32 => { :games => 100, :at_bats => 400, :hits => 120 },
+                       33 => { :games => 100, :at_bats => 395, :hits => 115 },
+                       34 => { :games => 100, :at_bats => 400, :hits => 110 },
+                       35 => { :games => 100, :at_bats => 400 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_hits(35, stats).should eq(106)
+      end
+    end
+
+    describe "age 36" do
+      let (:stats) { { 32 => { :games => 100, :at_bats => 400, :hits => 100 }, 
+                       33 => { :games => 100, :at_bats => 400, :hits => 120 },
+                       34 => { :games => 100, :at_bats => 395, :hits => 115 },
+                       35 => { :games => 100, :at_bats => 400, :hits => 110 },
+                       36 => { :games => 100, :at_bats => 400 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_hits(36, stats).should eq(106)
+      end
+    end
+
+    describe "age 37" do
+      let (:stats) { { 33 => { :games => 100, :at_bats => 400, :hits => 100 }, 
+                       34 => { :games => 100, :at_bats => 400, :hits => 120 },
+                       35 => { :games => 100, :at_bats => 395, :hits => 115 },
+                       36 => { :games => 100, :at_bats => 400, :hits => 110 },
+                       37 => { :games => 100, :at_bats => 400 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_hits(37, stats).should eq(101)
+      end
+    end
+
+    describe "age 38" do
+      let (:stats) { { 34 => { :games => 100, :at_bats => 400, :hits => 100 }, 
+                       35 => { :games => 100, :at_bats => 400, :hits => 120 },
+                       36 => { :games => 100, :at_bats => 395, :hits => 115 },
+                       37 => { :games => 100, :at_bats => 400, :hits => 110 },
+                       38 => { :games => 100, :at_bats => 400 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_hits(38, stats).should eq(113)
+      end
+    end
+
+    describe "age 39" do
+      let (:stats) { { 35 => { :games => 100, :at_bats => 400, :hits => 100 }, 
+                       36 => { :games => 100, :at_bats => 400, :hits => 120 },
+                       37 => { :games => 100, :at_bats => 395, :hits => 115 },
+                       38 => { :games => 100, :at_bats => 400, :hits => 110 },
+                       39 => { :games => 100, :at_bats => 400 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_hits(39, stats).should eq(99)
+      end
+    end
+
+    describe "age 40" do
+      let (:stats) { { 36 => { :games => 100, :at_bats => 400, :hits => 100 }, 
+                       37 => { :games => 100, :at_bats => 400, :hits => 120 },
+                       38 => { :games => 100, :at_bats => 395, :hits => 115 },
+                       39 => { :games => 100, :at_bats => 400, :hits => 110 },
+                       40 => { :games => 100, :at_bats => 400 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_hits(40, stats).should eq(111)
+      end
+    end
+
+    describe "age 41" do
+      let (:stats) { { 37 => { :games => 100, :at_bats => 400, :hits => 100 }, 
+                       38 => { :games => 100, :at_bats => 400, :hits => 120 },
+                       39 => { :games => 100, :at_bats => 395, :hits => 115 },
+                       40 => { :games => 100, :at_bats => 400, :hits => 110 },
+                       41 => { :games => 100, :at_bats => 400 } } }
+
+      it "returns the correct value" do
+        Brock::Projector.project_hits(41, stats).should eq(107)
+      end
+    end
   end
 
 end

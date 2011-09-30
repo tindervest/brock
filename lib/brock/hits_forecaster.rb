@@ -1,5 +1,8 @@
+require File.expand_path(File.dirname(__FILE__) + '/doubles_forecaster')
+
 class Brock
   module HitsForecaster
+    include DoublesForecaster
 
     class << self
       def included(klass)
@@ -25,18 +28,15 @@ class Brock
 
       def forecast_hits(age, stats, params)
         delta = ba_deltas.select { |k, v| k.include?(age) }.values.pop
-        base_factor = params[:projector].call(age, stats, delta)
+        base_factor = params[:projector].call(age, stats) + delta
         (stats[age][:at_bats] * base_factor).round(0)
       end
 
       def initialize_hits_parameters
-        hits_22 = method(:project_hits_22)
-        hits_under_30 = method(:project_hits_under_30)
-        hits_over_29 = method(:project_hits_over_29)
         params = {}
-        params[22..22] = { :projector => hits_22 }
-        params[23..29] = { :projector => hits_under_30 }
-        params[30..41] = { :projector => hits_over_29 }
+        params[22..22] = { :projector => method(:project_hits_22) }
+        params[23..29] = { :projector => method(:project_hits_under_30) }
+        params[30..41] = { :projector => method(:project_hits_over_29) }
         params
       end
 
@@ -62,22 +62,22 @@ class Brock
         ba_deltas
       end
 
-      def project_hits_22(age, stats, delta)
+      def project_hits_22(age, stats)
         hits_factor = stats[age-2][:hits] + stats[age-1][:hits] + 13.0
         at_bats_factor = stats[age-2][:at_bats] + stats[age-1][:at_bats] + 50.0
-        hits_factor / at_bats_factor + delta
+        hits_factor / at_bats_factor
       end
 
-      def project_hits_under_30(age, stats, delta)
+      def project_hits_under_30(age, stats)
         hits_factor = stats[age-3][:hits] + stats[age-2][:hits] + (stats[age-1][:hits] / 2.0) + 13.0
         at_bats_factor = stats[age-3][:at_bats] + stats[age-2][:at_bats] + (stats[age-1][:at_bats] / 2.0) + 50.0
-        hits_factor / at_bats_factor + delta
+        hits_factor / at_bats_factor
       end
 
-      def project_hits_over_29(age, stats, delta)
+      def project_hits_over_29(age, stats)
         hits_factor = stats[age-4][:hits] + stats[age-3][:hits] + stats[age-2][:hits] + 12.0
         at_bats_factor = stats[age-4][:at_bats] + stats[age-3][:at_bats] + stats[age-2][:at_bats] + 50.0
-        hits_factor / at_bats_factor + delta
+        hits_factor / at_bats_factor
       end
 
     end

@@ -37,6 +37,26 @@ describe "Brock::HomeRunsForecaster" do
         HomeRunsForecaster.project_home_runs(28, stats).should eq(23)
       end
     end
+
+    describe "ages 30 thru 36" do
+      let (:stats) { { 34 => { :hits => 100, :home_runs => 20 },
+                       35 => { :hits => 120, :home_runs => 25 },
+                       36 => { :hits => 120 } } }
+
+      it "returns correct value" do
+        HomeRunsForecaster.project_home_runs(36, stats).should eq(22)
+      end
+    end
+
+    describe "ages greater than 36" do
+      let (:stats) { { 35 => { :hits => 100, :home_runs => 21 },
+                       36 => { :hits => 120, :home_runs => 25 },
+                       37 => { :hits => 120 } } }
+
+      it "returns correct value" do
+        HomeRunsForecaster.project_home_runs(37, stats).should eq(22)
+      end
+    end
   end
 end
 

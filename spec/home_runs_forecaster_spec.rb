@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require 'brock/home_runs_forecaster'
+require 'brock/forecasters/home_runs_forecaster'
 
 describe "Brock::HomeRunsForecaster" do
   module HomeRunsForecaster

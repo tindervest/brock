@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require 'brock/walks_forecaster'
+require 'brock/forecasters/walks_forecaster'
 
 describe "Brock::WalksForecaster" do
 

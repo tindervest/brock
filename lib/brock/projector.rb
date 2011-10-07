@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/error')
 require File.expand_path(File.dirname(__FILE__) + '/stats_service')
-require File.expand_path(File.dirname(__FILE__) + '/hits_forecaster')
-require File.expand_path(File.dirname(__FILE__) + '/games_forecaster')
+require File.expand_path(File.dirname(__FILE__) + '/forecasters/hits_forecaster')
+require File.expand_path(File.dirname(__FILE__) + '/forecasters/games_forecaster')
 
 
 class Brock

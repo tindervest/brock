@@ -11,12 +11,13 @@ class Brock
     module ClassMethods
 
       def total_bases(stats)
-        validate_stats_hash(stats)
+        validate_stats_hash(stats, %w{ hits doubles triples home_runs })
+        
         singles(stats) + 2*stats[:doubles] + 3*stats[:triples] + 4*stats[:home_runs]
       end
 
       def runs_created(stats)
-        validate_stats_hash(stats)
+        validate_stats_hash(stats, %w{ at_bats walks hits doubles triples home_runs sb cs gidp sf sh hbp strike_outs iw })
 
         c = stats[:at_bats] + stats[:walks] + stats[:hbp] + stats[:sh] + stats[:sf]
         return 0 unless c > 0
@@ -30,7 +31,7 @@ class Brock
       end
 
       def runs_created_25(stats)
-        validate_stats_hash(stats)
+        validate_stats_hash(stats, %w{ at_bats walks hits doubles triples home_runs sb cs gidp })
 
         outs = outs(stats) 
         return 0 unless outs > 0

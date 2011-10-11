@@ -33,9 +33,10 @@ class Brock
         raise Brock::MalformattedArgumentError, "Stat line formatted incorrectly: #{line}" unless line.match(line_regex)
       end
 
-      def validate_stats_hash(stats)
-        stat_line_attributes.each_index do |index|
-          raise Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for #{stat_line_attributes[index]}" unless stats[stat_line_attributes[index].intern]
+      def validate_stats_hash(stats, attributes = nil)
+        attributes ||= stat_line_attributes
+        attributes.each_index do |index|
+          raise Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for #{attributes[index]}" unless stats[attributes[index].intern]
         end
       end
     end

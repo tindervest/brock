@@ -22,7 +22,5 @@ class Brock
         stats[:playtime][:bench] = ok_bench?(age, stats)
       end
     end
-
   end
-
 end

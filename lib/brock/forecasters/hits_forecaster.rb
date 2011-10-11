@@ -1,8 +1,5 @@
-require File.expand_path(File.dirname(__FILE__) + '/doubles_forecaster')
-
 class Brock
   module HitsForecaster
-    include DoublesForecaster
 
     class << self
       def included(klass)

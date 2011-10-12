@@ -16,6 +16,13 @@ class Brock
         singles(stats) + 2*stats[:doubles] + 3*stats[:triples] + 4*stats[:home_runs]
       end
 
+      def batting_average(stats)
+        validate_stats_hash(stats, %w{ hits })
+
+        return 0 unless stats[:at_bats] > 0
+        (stats[:hits] / (stats[:at_bats] + 0.0)).round(3)
+      end
+
       def runs_created(stats)
         validate_stats_hash(stats, %w{ at_bats walks hits doubles triples home_runs sb cs gidp sf sh hbp strike_outs iw })
 

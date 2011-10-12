@@ -52,4 +52,18 @@ describe "Brock::StatsCalculator" do
       Calculator.runs_created_25(valid_stats).should eq(6.32)
     end
   end
+
+  describe "#batting average" do
+    it "returns zero when there are no at-bats" do
+      Calculator.batting_average(zero_stats).should eq(0)
+    end
+
+    it "calculates value based on hits/at-bats formula" do
+      Calculator.batting_average(valid_stats).should eq(0.332)
+    end
+
+    it "should raise error when stats hash is missing any of the required keys or values" do
+      lambda{ Calculator.batting_average(invalid_stats) }.should raise_error(Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for hits")
+    end
+  end
 end

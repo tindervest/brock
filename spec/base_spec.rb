@@ -32,17 +32,15 @@ describe "Brock" do
       describe "where current age is less than 31" do
 
         before(:each) do
-          #Brock.project(path)
+          Brock.project(path)
         end
 
         it "sets the play factor for age 28" do
-          pending("play factor calculated on projected entry")
-          #Brock.stats[28][:playtime][:play_factor].should eq(0.500)
+          Brock.stats[:yearly_stats][28][:playtime][:play_factor].should eq(0.500)
         end
 
         it "sets the play factor for age 29" do
-          pending("play factor calculated on projected entry")
-          #Brock.stats[29][:playtime][:play_factor].should eq(1.000)
+          Brock.stats[:yearly_stats][29][:playtime][:play_factor].should eq(1.000)
         end
       end
 
@@ -57,22 +55,19 @@ describe "Brock" do
             f << "155 578 108 177 28 1 29 119 9 10 88 129 20 4 1 2 19\n" 
           end
           
-          #Brock.project(path)
+          Brock.project(path)
         end
 
         it "sets the play factor for age 29" do
-          pending("play factor calculated on projected entry")
-          #Brock.stats[29][:playtime][:play_factor].should eq(0.500)
+          Brock.stats[:yearly_stats][29][:playtime][:play_factor].should eq(0.500)
         end
 
         it "sets the play factor for age 30" do
-          pending("play factor calculated on projected entry")
-          #Brock.stats[30][:playtime][:play_factor].should eq(0.500)
+          Brock.stats[:yearly_stats][30][:playtime][:play_factor].should eq(0.500)
         end
 
         it "sets the play factor for age 31" do
-          pending("play factor calculated on projected entry")
-          #Brock.stats[31][:playtime][:play_factor].should eq(0.800)
+          Brock.stats[:yearly_stats][31][:playtime][:play_factor].should eq(0.800)
         end
       end
     end

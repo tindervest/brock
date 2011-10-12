@@ -35,13 +35,14 @@ class Brock
 
       def forecast_rest_of_career(age, stats, initial_sustenance)
         project_age = age + 1
-        
+
         until project_age > 41 do
           unless stats[project_age].nil? 
             forecast_playtime(project_age, stats)
             forecast_all_hits(project_age, stats)
             StatsService.initialize_stats_entry(project_age, stats[project_age], initial_sustenance)
             stats[project_age][:playtime][:play_factor] = StatsService.play_factor(project_age, stats)
+            break if stats[project_age][:games] == 0
           end
           project_age = project_age + 1
         end

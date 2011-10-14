@@ -13,6 +13,10 @@ class Brock
         return 0 unless stats[age-1][:rc] > 0
         (stats[age-1][:runs] * stats[age][:rc] / stats[age-1][:rc]).round(0)
       end
+
+      def project_rbi(stats)
+        (stats[:home_runs] + 0.235 * stats[:total_bases]).round(0)
+      end
     end
   end
 end

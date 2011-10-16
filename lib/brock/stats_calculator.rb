@@ -34,7 +34,7 @@ class Brock
 
         rc = (((2.4 * c + a) * (3 * c + b)) / (9 * c)) - (0.9 * c)
 
-        return rc.round(1)
+        rc > 0 ? rc.round(1) : 0
       end
 
       def runs_created_25(stats)

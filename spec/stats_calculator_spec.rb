@@ -18,6 +18,8 @@ describe "Brock::StatsCalculator" do
 
   let(:zero_stats) { { :games => 0, :at_bats => 0, :runs => 0, :hits => 0, :doubles => 0, :triples => 0, :home_runs => 0, :rbi => 0, :sb => 0, :cs => 0, :walks => 0, :strike_outs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :iw => 0 } }
 
+  let(:minimal_stats) { { :games => 1, :at_bats => 1, :runs => 0, :hits => 0, :doubles => 0, :triples => 0, :home_runs => 0, :rbi => 0, :sb => 0, :cs => 0, :walks => 0, :strike_outs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :iw => 0 } }
+
   describe "#total_bases" do
 
     it "calculates total bases" do
@@ -36,6 +38,10 @@ describe "Brock::StatsCalculator" do
 
     it "calculates runs created using 2002 version" do
       Calculator.runs_created(valid_stats).should eq(112.7)
+    end
+
+    it "returns zero when calculated value is negative" do
+      Calculator.runs_created(minimal_stats).should eq(0)
     end
 
     it "should raise error when stats hash is missing any of the required keys or values" do

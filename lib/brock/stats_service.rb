@@ -15,7 +15,10 @@ class Brock
 
     class << self
       def initialize_stats_entry(age, stats, initial_sustenance)
+        stats[:batting_average] = batting_average(stats)
+        stats[:total_bases] = total_bases(stats)
         stats[:proj_games] = prorate_games_to_162(stats[:year], stats[:games])
+        stats[:rc] = runs_created(stats)
         stats[:rc25] = runs_created_25(stats)
         stats[:sustenance] = sustenance_level(age, initial_sustenance)
         stats[:playtime][:regular] = ok_regular?(stats)

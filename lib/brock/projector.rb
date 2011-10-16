@@ -6,6 +6,7 @@ require File.expand_path(File.dirname(__FILE__) + '/forecasters/triples_forecast
 require File.expand_path(File.dirname(__FILE__) + '/forecasters/home_runs_forecaster')
 require File.expand_path(File.dirname(__FILE__) + '/forecasters/games_forecaster')
 require File.expand_path(File.dirname(__FILE__) + '/forecasters/walks_forecaster')
+require File.expand_path(File.dirname(__FILE__) + '/forecasters/runs_forecaster')
 
 
 class Brock
@@ -17,6 +18,7 @@ class Brock
     include TriplesForecaster
     include HomeRunsForecaster
     include WalksForecaster
+    include RunsForecaster
 
     class << self
 
@@ -41,6 +43,7 @@ class Brock
             forecast_playtime(project_age, stats)
             forecast_all_hits(project_age, stats)
             StatsService.initialize_stats_entry(project_age, stats[project_age], initial_sustenance)
+            forecast_run_production(project_age, stats)
             stats[project_age][:playtime][:play_factor] = StatsService.play_factor(project_age, stats)
             break if stats[project_age][:games] == 0
           end
@@ -73,6 +76,11 @@ class Brock
         stats[age][:doubles] = project_doubles(age, stats)
         stats[age][:triples] = project_triples(age, stats)
         stats[age][:home_runs] = project_home_runs(age, stats)
+      end
+
+      def forecast_run_production(age, stats)
+        stats[age][:runs] = project_runs(age, stats)
+        stats[age][:rbi] = project_rbi(stats[age])
       end
 
       def initialize_at_bats_parameters

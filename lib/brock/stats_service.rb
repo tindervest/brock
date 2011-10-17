@@ -24,6 +24,13 @@ class Brock
         stats[:playtime][:regular] = ok_regular?(stats)
         stats[:playtime][:bench] = ok_bench?(age, stats)
       end
+
+      def update_totals(yearly_stats, totals)
+        stat_line_attributes.each_index do |index|
+          stat = stat_line_attributes[index].intern
+          totals[stat] += yearly_stats[stat] 
+        end
+      end
     end
   end
 end

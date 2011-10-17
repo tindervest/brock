@@ -24,7 +24,7 @@ class Brock
 
       def project_career(current_age, stats, initial_sustenance)
         raise Brock::InvalidPlayerAge, "Current Age must be greater than 21" unless current_age > 21
-        calculate_initial_play_factor(current_age, stats, initial_sustenance)
+        calculate_initial_play_factor(current_age, stats[:yearly_stats], initial_sustenance)
         forecast_rest_of_career(current_age, stats, initial_sustenance)
       end
 
@@ -36,16 +36,18 @@ class Brock
       private 
 
       def forecast_rest_of_career(age, stats, initial_sustenance)
+        yearly_stats, totals = stats[:yearly_stats], stats[:totals]
         project_age = age + 1
 
         until project_age > 41 do
-          unless stats[project_age].nil? 
-            forecast_playtime(project_age, stats)
-            forecast_all_hits(project_age, stats)
-            StatsService.initialize_stats_entry(project_age, stats[project_age], initial_sustenance)
-            forecast_run_production(project_age, stats)
-            stats[project_age][:playtime][:play_factor] = StatsService.play_factor(project_age, stats)
-            break if stats[project_age][:games] == 0
+          unless yearly_stats[project_age].nil? 
+            forecast_playtime(project_age, yearly_stats)
+            forecast_all_hits(project_age, yearly_stats)
+            StatsService.initialize_stats_entry(project_age, yearly_stats[project_age], initial_sustenance)
+            forecast_run_production(project_age, yearly_stats)
+            yearly_stats[project_age][:playtime][:play_factor] = StatsService.play_factor(project_age, yearly_stats)
+            StatsService.update_totals(yearly_stats[project_age], totals)
+            break if yearly_stats[project_age][:games] == 0
           end
           project_age = project_age + 1
         end

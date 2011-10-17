@@ -72,7 +72,7 @@ class Brock
         
         populate_hash_from_extracted_values(year_stats, stat_line_attributes, stat_values) 
         StatsService.initialize_stats_entry(age, year_stats, configuration[:sustenance])
-        update_totals(year_stats)
+        StatsService.update_totals(year_stats, stats[:totals])
       end
 
       def age_from_index(index)
@@ -103,12 +103,6 @@ class Brock
         end
       end
 
-      def update_totals(yearly_stats)
-        stat_line_attributes.each_index do |index|
-          stat = stat_line_attributes[index].intern
-          stats[:totals][stat] += yearly_stats[stat] 
-        end
-      end
     end
   end
 end

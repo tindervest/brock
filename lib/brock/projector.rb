@@ -23,7 +23,7 @@ class Brock
     class << self
 
       def project_career(current_age, stats, initial_sustenance)
-        raise Brock::InvalidPlayerAge, "Current Age must be greater than 21" unless current_age > 21
+        raise Brock::InvalidPlayerAge, "Current Age must be greater than 20" unless current_age > 20
         calculate_initial_play_factor(current_age, stats[:yearly_stats], initial_sustenance)
         forecast_rest_of_career(current_age, stats, initial_sustenance)
       end

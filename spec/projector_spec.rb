@@ -5,8 +5,8 @@ require 'brock/stats_service'
 describe Brock::Projector do
   describe "#project_career" do
 
-    it "raises exception when age to project is less than 22" do
-      lambda { Brock::Projector.project_career(21, {}, 1.00) }.should raise_error(Brock::InvalidPlayerAge, "Current Age must be greater than 21")
+    it "raises exception when current age is less than 21" do
+      lambda { Brock::Projector.project_career(20, {}, 1.00) }.should raise_error(Brock::InvalidPlayerAge, "Current Age must be greater than 20")
     end
 
     describe "play factor calculation" do

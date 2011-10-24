@@ -1,5 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/error')
 require File.expand_path(File.dirname(__FILE__) + '/stats_service')
+require File.expand_path(File.dirname(__FILE__) + '/stats_initializer')
+require File.expand_path(File.dirname(__FILE__) + '/csv_parser')
 
 class Brock
 
@@ -12,6 +14,9 @@ class Brock
     end
 
     module ClassMethods
+
+      include StatsInitializer
+      include CSVParser
 
       def stats
         @stats ||= {}
@@ -41,17 +46,6 @@ class Brock
         stats[:yearly_stats].each do |k, v|
           v[:year] = year + k - age 
         end
-      end
-
-      def initialize_stats(stats_hash = {})
-        yearly_stats = stats_hash[:yearly_stats] = {}
-        (20..41).each do |age|
-          yearly_stats[age] = {}
-          initialize_stats_entry(yearly_stats[age])
-        end
-        stats_hash[:totals] = {}
-        initialize_stats_entry(stats_hash[:totals])
-        stats_hash
       end
 
       def extract_configuration_data(line)
@@ -95,14 +89,6 @@ class Brock
           hash[positions[index].intern] = values[index][0].to_i
         end
       end
-
-      def initialize_stats_entry(stats_hash)
-        stats_hash[:playtime] = {}
-        stat_line_attributes.each_index do |index|
-          stats_hash[stat_line_attributes[index].intern] = 0
-        end
-      end
-
     end
   end
 end

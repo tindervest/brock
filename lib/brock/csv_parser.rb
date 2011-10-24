@@ -1,0 +1,63 @@
+require 'csv'
+
+class Brock
+
+  module CSVParser
+
+    def read_csv_data(initial_sustenance, path)
+      initialize_stats(stats)
+      configuration[:sustenance] = initial_sustenance
+      age, year = populate_stats_from_csv(stats, path)
+      assign_years(year, age, stats[:yearly_stats])
+      age
+    end
+
+    private
+
+    def assign_years(last_year, last_age, stats)
+      if last_year > 0
+        current_age = last_age + 1
+        current_year = last_year + 1
+        until current_age > 41 do
+          stats[current_age][:year] = current_year
+          current_age += 1
+          current_year += 1
+        end
+      end
+    end
+
+    def populate_stats_from_csv(stats, path)
+      yearly_stats = stats[:yearly_stats]
+      age, year = 20, 0
+
+      data = CSV.read(path, :headers => true)
+      data.each do |row|
+        age = row["Age"].to_i
+        year = row["Year"].to_i
+
+        year_stats = yearly_stats[age]
+        year_stats[:year] = year
+
+        entry_mappings.each do |k, v|
+          year_stats[k] = row[v].to_i
+        end
+
+        StatsService.initialize_stats_entry(age, year_stats, configuration[:sustenance])
+        StatsService.update_totals(year_stats, stats[:totals])
+      end
+
+      [] << age << year
+    end
+
+    def entry_mappings
+      @entry_mappings ||= initialize_entry_mappings
+    end
+
+    def initialize_entry_mappings
+      mappings = { :at_bats => "AB", :games => "G", :runs => "R", :hits => "H", :doubles => "2B", :triples => "3B",
+                   :home_runs => "HR", :rbi => "RBI", :walks => "BB", :strike_outs => "SO", :gidp => "GDP",
+                   :hbp => "HBP", :iw => "IBB", :sf => "SF", :sh => "SH", :sb => "SB", :cs => "CS" }
+    end
+  end
+
+end

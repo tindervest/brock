@@ -14,5 +14,10 @@ class Brock
       Projector.project_career(age, stats, configuration[:sustenance])
     end
 
+    def project_csv(sustenance, path)
+      age = read_csv_data(sustenance, path)
+      Projector.project_career(age, stats, configuration[:sustenance])
+    end
+
   end
 end

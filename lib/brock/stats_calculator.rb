@@ -47,6 +47,15 @@ class Brock
         (rc/outs*25).round(2)
       end
 
+      def on_base_percentage(stats)
+        validate_stats_hash(stats, %w{ at_bats walks hbp sf hits })
+
+        pa = stats[:at_bats] + stats[:walks] + stats[:hbp] + stats[:sf]
+        return 0 unless pa > 0
+        ob = stats[:hits] + stats[:walks] + stats[:hbp]
+
+        ((ob + 0.0) / pa).round(3)
+      end
 
       private
 

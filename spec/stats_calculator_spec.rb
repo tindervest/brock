@@ -72,4 +72,18 @@ describe "Brock::StatsCalculator" do
       lambda{ Calculator.batting_average(invalid_stats) }.should raise_error(Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for hits")
     end
   end
+
+  describe "#on_base_percentage" do
+    it "returns zero when there are no plate appearances" do
+      Calculator.on_base_percentage(zero_stats).should eq(0)
+    end
+
+    it "calculates value based on obp formula" do
+      Calculator.on_base_percentage(valid_stats).should eq(0.367)
+    end
+
+    it "should raise error when stats hash is missing any of the required keys or values" do
+      lambda { Calculator.on_base_percentage(invalid_stats) }.should raise_error(Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for hbp")
+    end
+  end
 end

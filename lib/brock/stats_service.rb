@@ -18,6 +18,7 @@ class Brock
         stats[:batting_average] = batting_average(stats)
         stats[:obp] = on_base_percentage(stats)
         stats[:total_bases] = total_bases(stats)
+        stats[:slg] = slugging_percentage(stats)
         stats[:proj_games] = prorate_games_to_162(stats[:year], stats[:games])
         stats[:rc] = runs_created(stats)
         stats[:rc25] = runs_created_25(stats)
@@ -32,6 +33,7 @@ class Brock
           totals[stat] += yearly_stats[stat] 
         end
       end
+
     end
   end
 end

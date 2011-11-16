@@ -86,4 +86,18 @@ describe "Brock::StatsCalculator" do
       lambda { Calculator.on_base_percentage(invalid_stats) }.should raise_error(Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for hbp")
     end
   end
+
+  describe "slugging_percentage" do
+    it "returns zero when there are no at at bats" do
+      Calculator.slugging_percentage(zero_stats).should eq(0)
+    end
+
+    it "returns value of total bases divided by at bats" do
+      Calculator.slugging_percentage(valid_stats).should eq(0.534)
+    end
+
+    it "should raise error when stats hash is missing any of the required keys or values" do
+      lambda { Calculator.on_base_percentage(invalid_stats) }.should raise_error(Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for hbp")
+    end
+  end
 end

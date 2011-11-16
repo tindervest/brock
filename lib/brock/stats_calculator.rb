@@ -57,6 +57,11 @@ class Brock
         ((ob + 0.0) / pa).round(3)
       end
 
+      def slugging_percentage(stats)
+        return 0 unless stats[:at_bats] > 0
+        (total_bases(stats) / (stats[:at_bats] + 0.0)).round(3)
+      end
+
       private
 
       def singles(stats)

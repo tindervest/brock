@@ -7,6 +7,7 @@ require File.expand_path(File.dirname(__FILE__) + '/forecasters/home_runs_foreca
 require File.expand_path(File.dirname(__FILE__) + '/forecasters/games_forecaster')
 require File.expand_path(File.dirname(__FILE__) + '/forecasters/walks_forecaster')
 require File.expand_path(File.dirname(__FILE__) + '/forecasters/runs_forecaster')
+require File.expand_path(File.dirname(__FILE__) + '/forecasters/misc_forecaster')
 
 
 class Brock
@@ -19,6 +20,7 @@ class Brock
     include HomeRunsForecaster
     include WalksForecaster
     include RunsForecaster
+    include MiscForecaster
 
     class << self
 
@@ -45,6 +47,7 @@ class Brock
             forecast_all_hits(project_age, yearly_stats)
             StatsService.initialize_stats_entry(project_age, yearly_stats[project_age], initial_sustenance)
             forecast_run_production(project_age, yearly_stats)
+            yearly_stats[project_age].merge!(project_misc_stats(project_age, yearly_stats))
             yearly_stats[project_age][:playtime][:play_factor] = StatsService.play_factor(project_age, yearly_stats)
             StatsService.update_totals(yearly_stats[project_age], totals)
             break if yearly_stats[project_age][:games] == 0

@@ -59,87 +59,43 @@ describe Brock::Projector do
       end
     end
 
-    describe "games played projection" do
-        let(:stats) { { :totals => { :games => 0, :at_bats => 0, :runs => 0, :hits => 0, :doubles => 0, :triples => 0, :home_runs => 0, :rbi => 0,
-                        :sb => 0, :cs => 0, :walks => 0, :strike_outs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :iw => 0 },
-                        :yearly_stats => { 28 => { :year => 1998, :proj_games => 157, :games => 157, :at_bats => 624, :runs => 96, :rc => 88, :hits => 207, :doubles => 32, :triples => 5, :home_runs => 28, :rbi => 99, :sb => 12, :cs => 7, :walks => 32, :strike_outs => 91, :gidp => 16, :hbp => 6, :sh => 0, :sf => 6, :iw => 7, :playtime => { :regular => true, :bench => true, :play_factor => 1.00 } },
-                        29 => { :year => 1999, :proj_games => 157, :games => 157, :at_bats => 624, :runs => 96, :rc => 88, :hits => 207, :doubles => 32, :triples => 5, :home_runs => 28, :rbi => 99, :sb => 12, :cs => 7, :walks => 32, :strike_outs => 91, :gidp => 16, :hbp => 6, :sh => 0, :sf => 6, :iw => 7, :playtime => { :regular => true, :bench => true, :play_factor => 1.00 } },
-                        30 => { :year => 2000, :proj_games => 157, :games => 157, :at_bats => 624, :runs => 96, :rc => 88, :hits => 207, :doubles => 32, :triples => 5, :home_runs => 28, :rbi => 99, :sb => 12, :cs => 7, :walks => 32, :strike_outs => 91, :gidp => 16, :hbp => 6, :sh => 0, :sf => 6, :iw => 7, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
-                        31 => { :year => 2001, :proj_games => 157, :games => 157, :at_bats => 624, :runs => 96, :rc => 88, :hits => 207, :doubles => 32, :triples => 5, :home_runs => 28, :rbi => 99, :sb => 12, :cs => 7, :walks => 32, :strike_outs => 91, :gidp => 16, :hbp => 6, :sh => 0, :sf => 6, :iw => 7, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
-                        32 => { :year => 2002, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
-                        33 => { :year => 2003, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
-                        34 => { :year => 2004, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } }, 
-                        35 => { :year => 2005, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
-                        36 => { :year => 2006, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
-                        37 => { :year => 2007, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
-                        38 => { :year => 2008, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
-                        39 => { :year => 2009, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
-                        40 => { :year => 2010, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
-                        41 => { :year => 2011, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } } } } }
+    describe "resulting entries" do
+      let(:stats) { { :totals => { :games => 0, :at_bats => 0, :runs => 0, :hits => 0, :doubles => 0, :triples => 0, :home_runs => 0, :rbi => 0,
+                      :sb => 0, :cs => 0, :walks => 0, :strike_outs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :iw => 0 },
+                      :yearly_stats => { 28 => { :year => 1998, :proj_games => 157, :games => 157, :at_bats => 624, :runs => 96, :rc => 88, :hits => 207, :doubles => 32, :triples => 5, :home_runs => 28, :rbi => 99, :sb => 12, :cs => 7, :walks => 32, :strike_outs => 91, :gidp => 16, :hbp => 6, :sh => 0, :sf => 6, :iw => 7, :playtime => { :regular => true, :bench => true, :play_factor => 1.00 } },
+                      29 => { :year => 1999, :proj_games => 157, :games => 157, :at_bats => 624, :runs => 96, :rc => 88, :hits => 207, :doubles => 32, :triples => 5, :home_runs => 28, :rbi => 99, :sb => 12, :cs => 7, :walks => 32, :strike_outs => 91, :gidp => 16, :hbp => 6, :sh => 0, :sf => 6, :iw => 7, :playtime => { :regular => true, :bench => true, :play_factor => 1.00 } },
+                      30 => { :year => 2000, :proj_games => 157, :games => 157, :at_bats => 624, :runs => 96, :rc => 88, :hits => 207, :doubles => 32, :triples => 5, :home_runs => 28, :rbi => 99, :sb => 12, :cs => 7, :walks => 32, :strike_outs => 91, :gidp => 16, :hbp => 6, :sh => 0, :sf => 6, :iw => 7, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
+                      31 => { :year => 2001, :proj_games => 157, :games => 157, :at_bats => 624, :runs => 96, :rc => 88, :hits => 207, :doubles => 32, :triples => 5, :home_runs => 28, :rbi => 99, :sb => 12, :cs => 7, :walks => 32, :strike_outs => 91, :gidp => 16, :hbp => 6, :sh => 0, :sf => 6, :iw => 7, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
+                      32 => { :year => 2002, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
+                      33 => { :year => 2003, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
+                      34 => { :year => 2004, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } }, 
+                      35 => { :year => 2005, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
+                      36 => { :year => 2006, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
+                      37 => { :year => 2007, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
+                      38 => { :year => 2008, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
+                      39 => { :year => 2009, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
+                      40 => { :year => 2010, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } },
+                      41 => { :year => 2011, :sb => 0, :cs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :strike_outs => 0, :iw => 0, :playtime => { :regular => true, :bench => true, :play_factor => 1.00  } } } } }
 
-        before(:each) do
-          Brock::StatsService.stub(:prorate_games_to_actual).and_return(100)
-        end
+      before(:each) do
+        Brock::StatsService.stub(:prorate_games_to_actual).and_return(100)
+      end
 
+      describe "proration of games" do
         it "delegates games proration to Brock::Prorator" do
           Brock::StatsService.should_receive(:prorate_games_to_actual).exactly(10).times
           Brock::Projector.project_career(31, stats, 1.00) 
         end
-    end
-
-  end
-
-  describe "#project_at_bats" do
-    describe "for ages 22 through 27" do
-      let (:stats) { { 20 => { :games => 100, :at_bats => 400 },
-                       21 => { :games => 100, :at_bats => 400, :playtime => { :play_factor => 0.800 } },
-                       22 => { :games => 100 } } }
-
-      it "returns the correct value" do
-        Brock::Projector.project_at_bats(22, stats).should eq(395)
       end
 
-    end
-
-    describe "ages 28 and 29" do
-      let (:stats) { { 26 => { :games => 100, :at_bats => 400 },
-                       27 => { :games => 100, :at_bats => 400, :playtime => { :play_factor => 0.800 } },
-                       28 => { :games => 100 } } }
-
-      it "returns the correct value" do
-        Brock::Projector.project_at_bats(28, stats).should eq(392)
+      describe "projection flag" do
+        it "sets projection flag to true on all forecast entries" do
+          Brock::Projector.project_career(31, stats, 1.00) 
+          (32..41).each do |age|
+            stats[:yearly_stats][age][:projection].should be_true
+          end
+        end
       end
-    end
-
-    describe "age 30" do
-      let (:stats) { { 28 => { :games => 100, :at_bats => 400 },
-                       29 => { :games => 100, :at_bats => 400, :playtime => { :play_factor => 0.800 } },
-                       30 => { :games => 100 } } }
-
-      it "returns the correct value" do
-        Brock::Projector.project_at_bats(30, stats).should eq(405)
-      end
-    end
-
-    describe "age 31" do
-      let (:stats) { { 29 => { :games => 100, :at_bats => 400 },
-                       30 => { :games => 100, :at_bats => 400, :playtime => { :play_factor => 0.800 } },
-                       31 => { :games => 100 } } }
-
-      it "returns the correct value" do
-        Brock::Projector.project_at_bats(31, stats).should eq(359)
-      end
-    end
-    
-    describe "ages above 31" do
-      let (:stats) { { 30 => { :games => 100, :at_bats => 400 },
-                       31 => { :games => 100, :at_bats => 400, :playtime => { :play_factor => 0.800 } },
-                       32 => { :games => 100 } } }
-
-      it "returns the correct value" do
-        Brock::Projector.project_at_bats(32, stats).should eq(362)
-      end
-
     end
   end
 end

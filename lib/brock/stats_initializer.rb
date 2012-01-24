@@ -15,6 +15,7 @@ class Brock
 
     def initialize_stats_entry(stats_hash)
       stats_hash[:playtime] = {}
+      stats_hash[:projection] = false
       stat_line_attributes.each_index do |index|
         stats_hash[stat_line_attributes[index].intern] = 0
       end

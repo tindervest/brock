@@ -30,7 +30,12 @@ class Brock
       yearly_stats = stats[:yearly_stats]
       age, year = 20, 0
 
-      data = CSV.read(path, :headers => true)
+      if path =~ /.*.txt|csv/ 
+        data = CSV.read(path, :headers => true)
+      else
+        data = CSV.parse(path, :headers => true)
+      end
+
       data.each do |row|
         age = row["Age"].to_i
         year = row["Year"].to_i

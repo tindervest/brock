@@ -15,13 +15,8 @@ class Brock
 
     class << self
       def initialize_stats_entry(age, stats, initial_sustenance)
-        stats[:batting_average] = batting_average(stats)
-        stats[:obp] = on_base_percentage(stats)
-        stats[:total_bases] = total_bases(stats)
-        stats[:slg] = slugging_percentage(stats)
+        update_calculated_stats(stats)
         stats[:proj_games] = prorate_games_to_162(stats[:year], stats[:games])
-        stats[:rc] = runs_created(stats)
-        stats[:rc25] = runs_created_25(stats)
         stats[:sustenance] = sustenance_level(age, initial_sustenance)
         stats[:playtime][:regular] = ok_regular?(stats)
         stats[:playtime][:bench] = ok_bench?(age, stats)
@@ -32,8 +27,19 @@ class Brock
           stat = stat_line_attributes[index].intern
           totals[stat] += yearly_stats[stat] 
         end
+        update_calculated_stats(totals)
       end
 
+      private
+
+      def update_calculated_stats(stats)
+        stats[:batting_average] = batting_average(stats)
+        stats[:obp] = on_base_percentage(stats)
+        stats[:total_bases] = total_bases(stats)
+        stats[:slg] = slugging_percentage(stats)
+        stats[:rc] = runs_created(stats)
+        stats[:rc25] = runs_created_25(stats)
+      end
     end
   end
 end

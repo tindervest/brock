@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require 'brock/base'
+require 'brock'
 require 'fakefs'
 require 'fakefs/safe'
 require 'fakefs/spec_helpers'

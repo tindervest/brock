@@ -64,5 +64,4 @@ class Brock
                    :hbp => "HBP", :iw => "IBB", :sf => "SF", :sh => "SH", :sb => "SB", :cs => "CS" }
     end
   end
-
 end

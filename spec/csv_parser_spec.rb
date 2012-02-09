@@ -1,5 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require 'brock/base'
+require 'brock'
 require 'fakefs'
 require 'fakefs/safe'
 require 'fakefs/spec_helpers'
@@ -102,10 +102,6 @@ describe "Brock::CSVParser" do
         end
 
         describe "reading individual stats entry" do
-
-          it "some simple test" do
-            Brock.stats[:yearly_stats][20].should_not be_nil
-          end
 
           let (:stats) { Brock.stats[:yearly_stats][20] }
           

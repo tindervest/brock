@@ -41,17 +41,20 @@ class Brock
         year = row["Year"].to_i
 
         year_stats = yearly_stats[age]
-        year_stats[:year] = year
-
-        entry_mappings.each do |k, v|
-          year_stats[k] = row[v].to_i
-        end
-
-        StatsService.initialize_stats_entry(age, year_stats, configuration[:sustenance])
-        StatsService.update_totals(year_stats, stats[:totals])
+        populate_year_data(age, year, year_stats, stats, row) unless year_stats.nil?
       end
 
       [] << age << year
+    end
+
+    def populate_year_data(age, year, year_stats, stats, row)
+      year_stats[:year] = year
+
+      entry_mappings.each do |k, v|
+        year_stats[k] = row[v].to_i
+      end
+      StatsService.initialize_stats_entry(age, year_stats, configuration[:sustenance])
+      StatsService.update_totals(year_stats, stats[:totals])
     end
 
     def entry_mappings

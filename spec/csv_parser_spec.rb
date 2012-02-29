@@ -85,6 +85,7 @@ describe "Brock::CSVParser" do
       describe "reading properly formatted string" do
         let(:contents) do
           "Year,Age,G,PA,AB,R,H,2B,3B,HR,RBI,SB,CS,BB,SO,TB,GDP,HBP,SH,SF,IBB\n" +
+          "2010,19,100,396,359,45,93,21,1,22,59,5,2,34,123,182,7,2,0,1,6\n" +
           "2010,20,100,396,359,45,93,21,1,22,59,5,2,34,123,182,7,2,0,1,6\n" +
           "2011,21,150,601,516,79,135,30,5,34,87,5,5,70,166,277,11,9,0,6\n"
         end  

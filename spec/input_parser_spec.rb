@@ -101,7 +101,7 @@ describe Brock::InputParser do
         end
 
         it "accumulates strike outs" do
-          total_stats[:strike_outs].should eq(204)
+          total_stats[:strikeouts].should eq(204)
         end
 
         it "accumulates grounded into dp" do
@@ -201,7 +201,7 @@ describe Brock::InputParser do
         end
 
         it "extracts strikeouts" do
-          year_stats[:strike_outs].should eq(89)
+          year_stats[:strikeouts].should eq(89)
         end
 
         it "extracts double plays grounded into" do

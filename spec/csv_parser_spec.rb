@@ -60,7 +60,7 @@ describe "Brock::CSVParser" do
       end
 
       it "populates strikeouts" do
-        stats[:strike_outs].should eq(123)
+        stats[:strikeouts].should eq(123)
       end
 
       it "populates ground outs into double play" do

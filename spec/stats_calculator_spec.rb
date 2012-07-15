@@ -12,13 +12,13 @@ describe "Brock::StatsCalculator" do
   end
   
   # Kirby Puckett 1987 Stats
-  let(:valid_stats) { { :games => 157, :at_bats => 624, :runs => 96, :hits => 207, :doubles => 32, :triples => 5, :home_runs => 28, :rbi => 99, :sb => 12, :cs => 7, :walks => 32, :strike_outs => 91, :gidp => 16, :hbp => 6, :sh => 0, :sf => 6, :iw => 7 } }
+  let(:valid_stats) { { :games => 157, :at_bats => 624, :runs => 96, :hits => 207, :doubles => 32, :triples => 5, :home_runs => 28, :rbi => 99, :sb => 12, :cs => 7, :walks => 32, :strikeouts => 91, :gidp => 16, :hbp => 6, :sh => 0, :sf => 6, :iw => 7 } }
 
   let(:invalid_stats) { { :at_bats => 200, :games => 150, :doubles => 20, :triples => 1, :home_runs => 20, :walks => 10, :sb => 1, :cs => 2, :gidp => 5} }
 
-  let(:zero_stats) { { :games => 0, :at_bats => 0, :runs => 0, :hits => 0, :doubles => 0, :triples => 0, :home_runs => 0, :rbi => 0, :sb => 0, :cs => 0, :walks => 0, :strike_outs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :iw => 0 } }
+  let(:zero_stats) { { :games => 0, :at_bats => 0, :runs => 0, :hits => 0, :doubles => 0, :triples => 0, :home_runs => 0, :rbi => 0, :sb => 0, :cs => 0, :walks => 0, :strikeouts => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :iw => 0 } }
 
-  let(:minimal_stats) { { :games => 1, :at_bats => 1, :runs => 0, :hits => 0, :doubles => 0, :triples => 0, :home_runs => 0, :rbi => 0, :sb => 0, :cs => 0, :walks => 0, :strike_outs => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :iw => 0 } }
+  let(:minimal_stats) { { :games => 1, :at_bats => 1, :runs => 0, :hits => 0, :doubles => 0, :triples => 0, :home_runs => 0, :rbi => 0, :sb => 0, :cs => 0, :walks => 0, :strikeouts => 0, :gidp => 0, :hbp => 0, :sh => 0, :sf => 0, :iw => 0 } }
 
   describe "#total_bases" do
 

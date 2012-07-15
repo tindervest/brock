@@ -6,10 +6,10 @@ describe "Brock::MiscForecaster" do
     include Brock::MiscForecaster
   end
 
-  let (:stats) { { 25 => { :at_bats => 400, :walks => 50, :hbp => 10, :sf => 6, :strikeouts => 40, :iw => 12, :sb => 10, :cs => 5, :gidp => 12, :sh => 8 },
+  let (:stats) { { 25 => { :at_bats => 400, :walks => 50, :hbp => 10, :sf => 6, :strikeouts => 40, :iw => 12, :stolen_bases => 10, :caught_stealing => 5, :gidp => 12, :sh => 8 },
                    26 => { :at_bats => 200, :walks => 15 } } } 
 
-  let (:misc_stats) {  %w{ sb cs strikeouts gidp hbp sh sf iw } }
+  let (:misc_stats) {  %w{ stolen_bases caught_stealing strikeouts gidp hbp sh sf iw } }
 
   describe "#project_misc_stats" do
     it "returns hash containing keys for all misc statistics" do
@@ -25,14 +25,14 @@ describe "Brock::MiscForecaster" do
       result[:sf].should eq(3)
       result[:strikeouts].should eq(19)
       result[:iw].should eq(6)
-      result[:sb].should eq(5)
-      result[:cs].should eq(2)
+      result[:stolen_bases].should eq(5)
+      result[:caught_stealing].should eq(2)
       result[:gidp].should eq(6)
       result[:sh].should eq(4)
     end
 
     describe "given zero stats for proration" do
-      let (:stats) { { 25 => { :at_bats => 0, :walks => 0, :hbp => 0, :sf => 0, :strikeouts => 0, :iw => 0, :sb => 0, :cs => 0, :gidp => 0, :sh => 0 },
+      let (:stats) { { 25 => { :at_bats => 0, :walks => 0, :hbp => 0, :sf => 0, :strikeouts => 0, :iw => 0, :stolen_bases => 0, :caught_stealing => 0, :gidp => 0, :sh => 0 },
                        26 => { :at_bats => 200, :walks => 15 } } } 
 
       it "returns zero for all misc stat projection" do

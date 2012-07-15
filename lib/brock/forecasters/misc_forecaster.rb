@@ -21,7 +21,7 @@ class Brock
       private 
 
       def misc_stats
-        @stat_attr ||= %w{ sb cs strikeouts gidp hbp sh sf iw } 
+        @stat_attr ||= %w{ stolen_bases caught_stealing strikeouts gidp hbp sh sf iw } 
       end
 
       def pa_rate(age, stats)

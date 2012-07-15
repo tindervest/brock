@@ -10,7 +10,7 @@ class Brock
 
     module ClassMethods
       def stat_line_attributes
-        @stat_attr ||= %w{ games at_bats runs hits doubles triples home_runs rbi sb cs walks strikeouts gidp hbp sh sf iw } 
+        @stat_attr ||= %w{ games at_bats runs hits doubles triples home_runs rbi stolen_bases caught_stealing walks strikeouts gidp hbp sh sf iw } 
       end
 
       def config_line_attributes

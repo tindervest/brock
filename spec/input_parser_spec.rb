@@ -89,11 +89,11 @@ describe Brock::InputParser do
         end
         
         it "accumulates stolen bases" do
-          total_stats[:sb].should eq(15)
+          total_stats[:stolen_bases].should eq(15)
         end
 
         it "accumulates caught stealing" do
-          total_stats[:cs].should eq(9)
+          total_stats[:caught_stealing].should eq(9)
         end
 
         it "accumulates walks" do
@@ -189,11 +189,11 @@ describe Brock::InputParser do
         end
 
         it "extracts stolen bases" do
-          year_stats[:sb].should eq(5)
+          year_stats[:stolen_bases].should eq(5)
         end
         
         it "extracts caught stealing" do
-          year_stats[:cs].should eq(4)
+          year_stats[:caught_stealing].should eq(4)
         end
 
         it "extracts walks" do

@@ -44,11 +44,11 @@ describe "Brock::CSVParser" do
       end
 
       it "populates stolen bases" do
-        stats[:sb].should eq(5)
+        stats[:stolen_bases].should eq(5)
       end
 
       it "populates caught stealing" do
-        stats[:cs].should eq(2)
+        stats[:caught_stealing].should eq(2)
       end
 
       it "populates walks" do

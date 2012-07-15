@@ -24,7 +24,7 @@ class Brock
       end
 
       def runs_created(stats)
-        validate_stats_hash(stats, %w{ at_bats walks hits doubles triples home_runs stolen_bases caught_stealing gidp sf sh hbp strikeouts iw })
+        validate_stats_hash(stats, %w{ at_bats walks hits doubles triples home_runs stolen_bases caught_stealing gidp sf sh hbp strikeouts int_walks })
 
         c = stats[:at_bats] + stats[:walks] + stats[:hbp] + stats[:sh] + stats[:sf]
         return 0 unless c > 0
@@ -77,7 +77,7 @@ class Brock
       end
 
       def run_values_for_secondary_stats(stats)
-        0.29 * (stats[:walks] - stats[:iw] + stats[:hbp]) + 0.492 * (stats[:sf] + stats[:sh] + stats[:stolen_bases]) - 0.04 * stats[:strikeouts]
+        0.29 * (stats[:walks] - stats[:int_walks] + stats[:hbp]) + 0.492 * (stats[:sf] + stats[:sh] + stats[:stolen_bases]) - 0.04 * stats[:strikeouts]
       end
     end
   end

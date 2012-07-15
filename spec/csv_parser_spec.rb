@@ -56,7 +56,7 @@ describe "Brock::CSVParser" do
       end
 
       it "populates intentional walks" do
-        stats[:iw].should eq(6)
+        stats[:int_walks].should eq(6)
       end
 
       it "populates strikeouts" do

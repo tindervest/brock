@@ -64,7 +64,7 @@ class Brock
     def initialize_entry_mappings
       mappings = { :at_bats => "AB", :games => "G", :runs => "R", :hits => "H", :doubles => "2B", :triples => "3B",
                    :home_runs => "HR", :rbi => "RBI", :walks => "BB", :strikeouts => "SO", :gidp => "GDP",
-                   :hbp => "HBP", :iw => "IBB", :sf => "SF", :sh => "SH", :stolen_bases => "SB", :caught_stealing => "CS" }
+                   :hbp => "HBP", :int_walks => "IBB", :sf => "SF", :sh => "SH", :stolen_bases => "SB", :caught_stealing => "CS" }
     end
   end
 end

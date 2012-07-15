@@ -121,7 +121,7 @@ describe Brock::InputParser do
         end
 
         it "accumulates intentional walks" do
-          total_stats[:iw].should eq(39)
+          total_stats[:int_walks].should eq(39)
         end
       end
 
@@ -221,7 +221,7 @@ describe Brock::InputParser do
         end
 
         it "extracts intentional walks" do
-          year_stats[:iw].should eq(17)
+          year_stats[:int_walks].should eq(17)
         end
 
         it "calculates prorated games" do

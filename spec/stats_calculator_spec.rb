@@ -31,6 +31,20 @@ describe "Brock::StatsCalculator" do
     end
   end
 
+  describe '#extra_base_hits' do
+    it "returns zero when there are no doubles, triples or home runs" do
+      Calculator.extra_base_hits(zero_stats).should eq(0)
+    end 
+
+    it "returns the sum of doubles, triples and home runs" do
+      Calculator.extra_base_hits(valid_stats).should eq(65)
+    end
+
+    it "should raise error when stats hash is missing any of the required keys or values" do
+      lambda{ Calculator.extra_base_hits(invalid_stats) }.should raise_error(Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for hits")
+    end
+  end
+
   describe "#runs_created" do
     it "returns zero when c component is zero" do
       Calculator.runs_created(zero_stats).should eq(0)

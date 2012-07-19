@@ -62,6 +62,11 @@ class Brock
         (total_bases(stats) / (stats[:at_bats] + 0.0)).round(3)
       end
 
+      def extra_base_hits(stats)
+        validate_stats_hash(stats, %w{ hits doubles triples home_runs })
+        stats[:hits] - singles(stats)
+      end
+
       private
 
       def singles(stats)

@@ -101,7 +101,7 @@ describe "Brock::StatsCalculator" do
     end
   end
 
-  describe "slugging_percentage" do
+  describe "#slugging_percentage" do
     it "returns zero when there are no at at bats" do
       Calculator.slugging_percentage(zero_stats).should eq(0)
     end
@@ -114,4 +114,33 @@ describe "Brock::StatsCalculator" do
       lambda { Calculator.on_base_percentage(invalid_stats) }.should raise_error(Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for hbp")
     end
   end
+
+  describe "#ops" do
+    it "returns zero when there are no plate appearances" do
+      Calculator.ops(zero_stats).should eq(0)
+    end
+
+    it "returns sum of slugging_percentage and on_base_percentage" do
+      Calculator.ops(valid_stats).should eq(0.901)
+    end
+
+    it "should raise error when stats hash is missing any of the required keys or values" do
+      lambda { Calculator.ops(invalid_stats) }.should raise_error(Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for hbp")
+    end
+  end
+
+  describe "#secondary average" do
+    it "returns zero when there are no at bats" do
+      Calculator.secondary_average(zero_stats).should eq(0)
+    end
+
+    it "returns value from applying Bill James' formula" do
+      Calculator.secondary_average(valid_stats).should eq(0.261)
+    end
+
+    it "should raise error when stats hash is missing any of the required keys or values" do
+      lambda { Calculator.secondary_average(invalid_stats) }.should raise_error(Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for hits")
+    end
+  end
+  
 end

@@ -67,6 +67,17 @@ class Brock
         stats[:hits] - singles(stats)
       end
 
+      def ops(stats) 
+        on_base_percentage(stats)  + slugging_percentage(stats)
+      end
+
+      def secondary_average(stats)
+        validate_stats_hash(stats, %w{ at_bats walks stolen_bases caught_stealing })
+        return 0 unless stats[:at_bats] > 0
+        net_secondary_bases = (total_bases(stats) - stats[:hits] + stats[:walks] + stats[:stolen_bases] - stats[:caught_stealing]) 
+        (net_secondary_bases / (stats[:at_bats] + 0.0)).round(3)
+      end
+
       private
 
       def singles(stats)

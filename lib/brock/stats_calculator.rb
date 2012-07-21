@@ -78,6 +78,17 @@ class Brock
         (net_secondary_bases / (stats[:at_bats] + 0.0)).round(3)
       end
 
+      def isolated_power(stats)
+        return slugging_percentage(stats) - batting_average(stats)
+      end
+
+      def run_element_ratio(stats)
+        early_bases = stats[:stolen_bases] + stats[:walks]
+        late_bases = total_bases(stats) - stats[:hits] + 0.0
+        return 0 unless late_bases > 0
+        (early_bases / late_bases).round(3)
+      end
+
       private
 
       def singles(stats)

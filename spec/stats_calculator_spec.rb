@@ -142,5 +142,33 @@ describe "Brock::StatsCalculator" do
       lambda { Calculator.secondary_average(invalid_stats) }.should raise_error(Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for hits")
     end
   end
+
+  describe "#isolated_power" do
+    it "returns zero when there are no plate appearances" do
+      Calculator.isolated_power(zero_stats).should eq(0)
+    end
+
+    it "returns slugging percentage minus batting average" do
+      Calculator.isolated_power(valid_stats).should eq(0.202)
+    end
+
+    it "should raise error when stats hash is missing any of the required keys or values" do
+      lambda { Calculator.isolated_power(invalid_stats) }.should raise_error(Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for hits")
+    end
+  end
+
+  describe "#run_element_ratio" do
+    it "returns zero when there are no at bats" do
+      Calculator.run_element_ratio(zero_stats).should eq(0)
+    end
+
+    it "returns value for ratio of early inning bases (sb, walks) to late bases (extra base hit bases)" do
+      Calculator.run_element_ratio(valid_stats).should eq(0.349)
+    end
+
+    it "should raise error when stats hash is missing any of the required keys or values" do
+      lambda { Calculator.run_element_ratio(invalid_stats) }.should raise_error(Brock::InvalidStatsHashError, "Stats hash must contain all elements with values: Missing element for hits")
+    end
+  end
   
 end
